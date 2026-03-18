@@ -8,7 +8,7 @@ const processItems = [
   {
     step: "01",
     title: "Chọn mẫu yêu thích",
-    text: "Chọn dáng, kích thước, phong cách và những điểm nhấn phù hợp với dịp tặng.",
+    text: "Chọn dáng, kích thước, phong cách và điểm nhấn phù hợp với dịp tặng.",
   },
   {
     step: "02",
@@ -23,15 +23,15 @@ const processItems = [
   {
     step: "04",
     title: "Hoàn thiện món quà",
-    text: "Phiên bản cuối được hoàn thiện tinh tế để bạn sẵn sàng trao tặng trong những dịp đáng nhớ.",
+    text: "Phiên bản cuối được hoàn thiện tinh tế để bạn sẵn sàng trao tặng trong dịp đáng nhớ.",
   },
 ];
 
 const valueItems = [
-  "Bố cục rõ ràng để khách cảm nhận ngay sự chỉn chu và cao cấp.",
-  "Motion nhẹ, mượt và tiết chế để tạo cảm giác hiện đại.",
-  "Quy trình tư vấn gọn gàng, giúp ra quyết định nhanh hơn.",
-  "Phù hợp cho quà sinh nhật, kỷ niệm, cưới hỏi và quà doanh nghiệp.",
+  { id: "01", text: "Bố cục rõ ràng để khách cảm nhận ngay sự chỉn chu và cao cấp." },
+  { id: "02", text: "Motion nhẹ, mượt và tiết chế để tạo cảm giác hiện đại." },
+  { id: "03", text: "Quy trình tư vấn gọn gàng, giúp ra quyết định nhanh hơn." },
+  { id: "04", text: "Phù hợp cho quà sinh nhật, kỷ niệm, cưới hỏi và quà doanh nghiệp." },
 ];
 
 const faqItems = [
@@ -91,14 +91,14 @@ export default function HomePage() {
                 </a>
               </div>
 
-              <div className="mt-10 grid gap-4 sm:grid-cols-3">
+              <div className="mt-10 grid gap-4 sm:grid-cols-3 sm:auto-rows-fr">
                 {[
                   { label: "Dáng mẫu", value: `${bodyBases.length}+ lựa chọn sẵn` },
                   { label: "Phong cách", value: `${outfitThemes.length} chủ đề nổi bật` },
-                  { label: "Điểm nhấn", value: `${accessories.length} phụ kiện để chọn` },
+                  { label: "Điểm nhấn", value: `${accessories.length} phụ kiện chọn sẵn` },
                 ].map((item, index) => (
-                  <Reveal key={item.label} delayMs={index * 80}>
-                    <div className="premium-card glass-panel-soft rounded-[28px] p-5">
+                  <Reveal key={item.label} delayMs={index * 80} className="h-full">
+                    <div className="premium-card glass-panel-soft flex h-full min-h-[128px] flex-col justify-between rounded-[28px] p-5">
                       <p className="text-sm text-stone-400">{item.label}</p>
                       <p className="mt-2 text-xl font-semibold text-stone-100">{item.value}</p>
                     </div>
@@ -132,7 +132,7 @@ export default function HomePage() {
                     ].map((item, index) => (
                       <div
                         key={item}
-                        className="premium-card flex items-center gap-4 rounded-[24px] border border-white/8 bg-white/4 p-4"
+                        className="premium-card flex min-h-[78px] items-center gap-4 rounded-[24px] border border-white/8 bg-white/4 p-4"
                       >
                         <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#f0dbc0]/10 text-sm font-semibold text-[#f2dec5]">
                           0{index + 1}
@@ -142,14 +142,14 @@ export default function HomePage() {
                     ))}
                   </div>
 
-                  <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                    <div className="glass-panel-soft rounded-[24px] p-4">
+                  <div className="mt-6 grid gap-3 sm:grid-cols-2 sm:auto-rows-fr">
+                    <div className="glass-panel-soft flex h-full min-h-[108px] flex-col rounded-[24px] p-4">
                       <p className="text-xs tracking-[0.18em] text-stone-500 uppercase">Kích thước</p>
                       <p className="mt-2 text-base font-semibold text-stone-100">
                         {sizeOptions.map((item) => item.id).join(" / ")}
                       </p>
                     </div>
-                    <div className="glass-panel-soft rounded-[24px] p-4">
+                    <div className="glass-panel-soft flex h-full min-h-[108px] flex-col rounded-[24px] p-4">
                       <p className="text-xs tracking-[0.18em] text-stone-500 uppercase">Cá nhân hoá</p>
                       <p className="mt-2 text-base font-semibold text-stone-100">
                         Gửi ảnh {"->"} duyệt phong cách {"->"} hoàn thiện
@@ -176,10 +176,10 @@ export default function HomePage() {
               </p>
             </Reveal>
 
-            <div className="mt-10 grid gap-4 lg:grid-cols-4">
+            <div className="mt-10 grid gap-4 lg:grid-cols-4 lg:auto-rows-fr">
               {processItems.map((item, index) => (
-                <Reveal key={item.title} delayMs={index * 90}>
-                  <article className="premium-card glass-panel-soft rounded-[30px] p-6">
+                <Reveal key={item.title} delayMs={index * 90} className="h-full">
+                  <article className="premium-card glass-panel-soft flex h-full min-h-[228px] flex-col rounded-[30px] p-6">
                     <p className="text-xs tracking-[0.2em] text-stone-500 uppercase">{item.step}</p>
                     <h3 className="mt-4 text-xl font-semibold text-stone-100">{item.title}</h3>
                     <p className="mt-3 text-sm leading-7 text-stone-400">{item.text}</p>
@@ -204,12 +204,14 @@ export default function HomePage() {
               </div>
             </Reveal>
 
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid gap-4 md:grid-cols-2 md:auto-rows-fr">
               {valueItems.map((item, index) => (
-                <Reveal key={item} delayMs={index * 80}>
-                  <div className="premium-card glass-panel-soft rounded-[30px] p-6">
-                    <div className="mb-5 h-10 w-10 rounded-2xl bg-[#ecd7ba]/10 ring-1 ring-[#ecd7ba]/12" />
-                    <p className="text-sm leading-7 text-stone-300">{item}</p>
+                <Reveal key={item.id} delayMs={index * 80} className="h-full">
+                  <div className="premium-card glass-panel-soft flex h-full min-h-[166px] flex-col rounded-[30px] p-6">
+                    <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-2xl bg-[#ecd7ba]/10 text-xs font-semibold tracking-[0.18em] text-[#ecd7ba] ring-1 ring-[#ecd7ba]/12">
+                      {item.id}
+                    </div>
+                    <p className="text-sm leading-7 text-stone-300">{item.text}</p>
                   </div>
                 </Reveal>
               ))}
@@ -251,10 +253,10 @@ export default function HomePage() {
               </h2>
             </Reveal>
 
-            <div className="mt-10 grid gap-4 md:grid-cols-3">
+            <div className="mt-10 grid gap-4 md:grid-cols-3 md:auto-rows-fr">
               {faqItems.map((item, index) => (
-                <Reveal key={item.q} delayMs={index * 80}>
-                  <article className="premium-card glass-panel-soft rounded-[30px] p-6">
+                <Reveal key={item.q} delayMs={index * 80} className="h-full">
+                  <article className="premium-card glass-panel-soft flex h-full min-h-[190px] flex-col rounded-[30px] p-6">
                     <h3 className="text-lg font-semibold text-stone-100">{item.q}</h3>
                     <p className="mt-4 text-sm leading-7 text-stone-400">{item.a}</p>
                   </article>
