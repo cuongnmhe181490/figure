@@ -41,6 +41,7 @@ export function FigureConfigurator() {
   const [note, setNote] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [imageFile, setImageFile] = useState<File | null>(null);
+  const [company, setCompany] = useState("");
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus>({ type: "idle" });
 
   const activeTheme = useMemo(
@@ -123,9 +124,11 @@ export function FigureConfigurator() {
     try {
       const formData = new FormData();
       formData.append("customerName", customerName);
-      formData.append("contact", `${phone} / ${email}`);
+      formData.append("email", email);
+      formData.append("phone", phone);
       formData.append("note", note);
       formData.append("imageUrl", imageUrl);
+      formData.append("company", company);
       formData.append("config", JSON.stringify(config));
 
       if (imageFile) {
@@ -153,6 +156,7 @@ export function FigureConfigurator() {
       setNote("");
       setImageUrl("");
       setImageFile(null);
+      setCompany("");
     } catch (error) {
       setSubmitStatus({
         type: "error",
@@ -204,6 +208,19 @@ export function FigureConfigurator() {
               </div>
 
               <form className="mt-8 space-y-8" onSubmit={handleSubmit}>
+                <div className="hidden" aria-hidden="true">
+                  <label>
+                    Company
+                    <input
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={company}
+                      onChange={(event) => setCompany(event.target.value)}
+                      name="company"
+                    />
+                  </label>
+                </div>
+
                 <OptionCardGroup
                   label="Dáng mẫu"
                   value={config.bodyBase}
@@ -284,7 +301,7 @@ export function FigureConfigurator() {
                       <span className="text-sm text-stone-300">Tải ảnh lên</span>
                       <input
                         type="file"
-                        accept="image/*"
+                        accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
                         onChange={(event) => setImageFile(event.target.files?.[0] ?? null)}
                         className="block w-full rounded-[24px] border border-white/10 bg-white/4 px-4 py-3 text-sm text-stone-300 transition duration-300 file:mr-4 file:rounded-full file:border-0 file:bg-[#e9d2b7] file:px-4 file:py-2 file:text-sm file:font-medium file:text-stone-900 hover:bg-white/6"
                       />
