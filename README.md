@@ -1,16 +1,22 @@
-# Figure Atelier Demo MVP
+# Figure Atelier
 
-Website demo cho mô hình kinh doanh figurine 3D cá nhân hóa, xây bằng `Next.js`, `TypeScript`, `Tailwind CSS` và `React Three Fiber`.
+Next.js app cho nền tảng quà tặng 3D cá nhân hoá, gồm:
 
-## Tính năng hiện có
+- Landing page premium
+- Collection gallery
+- Builder 3D
+- Order flow với review token
+- Customer review page
+- Admin dashboard
 
-- Landing page premium để giới thiệu dịch vụ
-- Trang configurator chọn body, size, outfit, màu, phụ kiện, đế
-- Preview 3D mock phản hồi theo cấu hình
-- UI upload ảnh cho phần head custom
-- Form gửi yêu cầu đặt hàng / tư vấn
-- API fallback nội bộ và hỗ trợ Supabase nếu cấu hình env
-- Responsive tốt cho mobile và desktop
+## Stack
+
+- Next.js App Router
+- TypeScript
+- Tailwind CSS
+- React Three Fiber / Drei
+- Framer Motion
+- Supabase-ready backend
 
 ## Chạy local
 
@@ -19,67 +25,53 @@ npm install
 npm run dev
 ```
 
-Mở [http://localhost:3000](http://localhost:3000).
-
-## Build production
-
-```bash
-npm run build
-npm run start
-```
-
 ## Biến môi trường
 
-Tạo file `.env.local` từ `.env.example` nếu muốn lưu request vào Supabase:
+Copy `.env.example` thành `.env.local` và điền:
 
 ```bash
-NEXT_PUBLIC_SUPABASE_URL=your-project-url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+SUPABASE_STORAGE_BUCKET=gift-assets
+ADMIN_EMAIL=
+ADMIN_PASSWORD=
+ADMIN_SESSION_SECRET=
 ```
 
-Nếu chưa cấu hình, API sẽ fallback sang `console.log` ở route `app/api/inquiry/route.ts`.
+## Database và storage
 
-## Gợi ý bảng Supabase
+App ưu tiên dùng:
 
-Tạo bảng `figure_inquiries` với các cột:
+- `Supabase Postgres` cho bảng orders
+- `Supabase Storage` cho `.glb`, preview image
+- session admin riêng bằng cookie `HttpOnly`
 
-- `id` bigint identity primary key
-- `customer_name` text
-- `contact` text
-- `note` text
-- `image_url` text
-- `image_file_name` text
-- `config` jsonb
-- `source` text
-- `created_at` timestamptz
+Schema mẫu nằm ở:
 
-## Deploy
+- [supabase/schema.sql](/D:/figure/supabase/schema.sql)
 
-### Vercel
+## Luồng chính
 
-1. Push code lên GitHub
-2. Import project vào Vercel
-3. Thêm env nếu dùng Supabase
-4. Deploy
+### Public
 
-### Cloudflare Pages
+- `/`
+- `/collections`
+- `/design`
+- `/review/[token]`
 
-1. Push code lên GitHub
-2. Tạo project mới trên Cloudflare Pages
-3. Build command: `npm run build`
-4. Output theo hướng dẫn Next.js adapter của Cloudflare nếu bạn muốn production runtime trên Cloudflare
+### Admin
 
-Với giai đoạn đầu, `Vercel` là đường deploy free nhanh nhất cho repo này.
+- `/admin/login`
+- `/admin`
 
-## Khi thay model 3D thật sau này
+## Ghi chú triển khai
 
-- Dữ liệu lựa chọn nằm trong [data/figure-options.ts](/D:/figure/data/figure-options.ts)
-- Logic preview nằm trong [components/configurator/figure-canvas.tsx](/D:/figure/components/configurator/figure-canvas.tsx)
-- Wrapper preview nằm trong [components/configurator/figure-preview.tsx](/D:/figure/components/configurator/figure-preview.tsx)
+- `Collections` truyền preset thật sang builder bằng query param
+- Builder lưu config trong `localStorage`
+- Khi tạo order, hệ thống sinh `review_token` ngẫu nhiên bằng `crypto`
+- Admin có thể đổi trạng thái, upload model `.glb`, upload preview image
 
-Bạn có thể thay primitive hiện tại bằng:
+## Fallback dev
 
-- file `glb/gltf` cho từng body / outfit / accessory
-- hoặc component model riêng tương ứng từng lựa chọn
-
-Miễn là `FigureCanvas` vẫn nhận `config`, phần còn lại của configurator không cần đổi kiến trúc.
+Nếu chưa có Supabase env, app vẫn có fallback để dev local. Tuy nhiên production nên dùng Supabase đầy đủ để dữ liệu bền vững.
