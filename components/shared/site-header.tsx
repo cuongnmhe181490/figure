@@ -10,10 +10,7 @@ const sectionItems = [
   { id: "faq", label: "FAQ" },
 ];
 
-const pageItems = [
-  { href: "/collections", label: "Collections" },
-  { href: "/admin", label: "Admin" },
-];
+const pageItems = [{ href: "/collections", label: "Bộ sưu tập" }];
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -56,7 +53,7 @@ export function SiteHeader() {
           </div>
           <div>
             <p className="text-sm font-semibold tracking-[0.22em] text-stone-50 uppercase">Figure Atelier</p>
-            <p className="text-xs text-stone-400">3D personalized gifts</p>
+            <p className="text-xs text-stone-400">Quà tặng cá nhân hoá</p>
           </div>
         </Link>
 

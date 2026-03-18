@@ -6,7 +6,7 @@ import { SiteHeader } from "@/components/shared/site-header";
 
 export const metadata: Metadata = {
   title: "Chọn mẫu figure",
-  description: "Chọn mẫu, phong cách, phụ kiện và gửi ảnh để nhận tư vấn cá nhân hoá.",
+  description: "Chọn mẫu, gửi ảnh chân dung và để đội ngũ liên hệ tư vấn cho phiên bản cá nhân hoá của bạn.",
 };
 
 export default function DesignPage() {
@@ -14,7 +14,13 @@ export default function DesignPage() {
     <div className="min-h-screen">
       <SiteHeader />
       <main>
-        <Suspense fallback={<div className="mx-auto max-w-7xl px-5 py-16 text-sm text-stone-400 sm:px-6 lg:px-8">Đang chuẩn bị builder...</div>}>
+        <Suspense
+          fallback={
+            <div className="mx-auto max-w-7xl px-5 py-16 text-sm text-stone-400 sm:px-6 lg:px-8">
+              Đang chuẩn bị khu vực chọn mẫu...
+            </div>
+          }
+        >
           <FigureConfigurator />
         </Suspense>
       </main>

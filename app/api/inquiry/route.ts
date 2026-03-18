@@ -55,7 +55,7 @@ export async function POST(request: Request) {
     return NextResponse.json({
       success: true,
       message:
-        "Yêu cầu đã được ghi nhận. Chúng tôi sẽ dùng ảnh bạn gửi để tư vấn và cá nhân hoá phiên bản phù hợp.",
+        "Yêu cầu đã được ghi nhận. Đội ngũ sẽ liên hệ riêng để tư vấn và hoàn thiện phiên bản phù hợp cho bạn.",
     });
   } catch (error) {
     console.error("Inquiry submit error", error);

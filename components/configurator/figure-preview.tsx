@@ -33,10 +33,10 @@ export function FigurePreview({ config }: FigurePreviewProps) {
         <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-xs tracking-[0.18em] text-stone-500 uppercase">Xem trước</p>
-            <h3 className="mt-2 text-xl font-semibold text-stone-100">Phiên bản bạn đang chọn</h3>
+            <h3 className="mt-2 text-xl font-semibold text-stone-100">Cấu hình bạn đang chọn</h3>
           </div>
           <div className="rounded-full border border-white/10 bg-white/4 px-3 py-1.5 text-xs text-stone-300">
-            Cá nhân hoá từ ảnh của bạn
+            Chỉ để hình dung tổng thể
           </div>
         </div>
 
@@ -52,7 +52,7 @@ export function FigurePreview({ config }: FigurePreviewProps) {
           <p className="text-sm text-stone-400">{size.label}</p>
         </div>
         <div className="premium-card rounded-[24px] border border-white/8 bg-white/4 p-4">
-          <p className="text-xs tracking-[0.18em] text-stone-500 uppercase">Phong cách</p>
+          <p className="text-xs tracking-[0.18em] text-stone-500 uppercase">Trang phục</p>
           <p className="mt-2 font-semibold text-stone-100">{outfit.name}</p>
           <div className="mt-2 flex items-center gap-2 text-sm text-stone-400">
             <span className="h-4 w-4 rounded-full border border-white/10" style={{ backgroundColor: config.outfitColor }} />

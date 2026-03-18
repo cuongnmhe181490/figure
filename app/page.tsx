@@ -7,31 +7,31 @@ import { SiteHeader } from "@/components/shared/site-header";
 const processItems = [
   {
     step: "01",
-    title: "Chọn mẫu yêu thích",
-    text: "Chọn dáng, kích thước, phong cách và điểm nhấn phù hợp với dịp tặng.",
+    title: "Chọn mẫu figure",
+    text: "Chọn dáng, size, trang phục và điểm nhấn phù hợp với món quà của bạn.",
   },
   {
     step: "02",
     title: "Gửi ảnh chân dung",
-    text: "Ảnh giúp chúng tôi tư vấn diện mạo và giữ lại thần thái riêng của người nhận.",
+    text: "Ảnh giúp chúng tôi chuẩn bị phần đầu theo đúng tinh thần riêng của người nhận.",
   },
   {
     step: "03",
-    title: "Nhận tư vấn riêng",
-    text: "Chúng tôi xác nhận chi tiết, tinh chỉnh phối màu và chốt phương án thật gọn gàng.",
+    title: "Nhận tư vấn chi tiết",
+    text: "Đội ngũ sẽ liên hệ để xác nhận lựa chọn và gợi ý phương án phù hợp hơn.",
   },
   {
     step: "04",
-    title: "Hoàn thiện món quà",
-    text: "Phiên bản cuối được hoàn thiện tinh tế để bạn sẵn sàng trao tặng trong dịp đáng nhớ.",
+    title: "Hoàn thiện phiên bản riêng",
+    text: "Sau khi thống nhất, chúng tôi sẽ hoàn thiện phiên bản cá nhân hoá dành riêng cho bạn.",
   },
 ];
 
 const valueItems = [
-  { id: "01", text: "Bố cục rõ ràng để khách cảm nhận ngay sự chỉn chu và cao cấp." },
-  { id: "02", text: "Motion nhẹ, mượt và tiết chế để tạo cảm giác hiện đại." },
-  { id: "03", text: "Quy trình tư vấn gọn gàng, giúp ra quyết định nhanh hơn." },
-  { id: "04", text: "Phù hợp cho quà sinh nhật, kỷ niệm, cưới hỏi và quà doanh nghiệp." },
+  { id: "01", text: "Khách có thể chọn mẫu trước theo cách ngắn gọn và dễ hiểu." },
+  { id: "02", text: "Mọi lựa chọn đều hướng tới cảm giác quà tặng tinh tế và chỉn chu." },
+  { id: "03", text: "Ảnh chân dung sẽ được dùng để hoàn thiện phần riêng sau bước tư vấn." },
+  { id: "04", text: "Phù hợp cho sinh nhật, kỷ niệm, cưới hỏi và quà doanh nghiệp." },
 ];
 
 const faqItems = [
@@ -40,12 +40,12 @@ const faqItems = [
     a: "Chỉ cần chọn mẫu, để lại thông tin và gửi ảnh rõ mặt. Phần còn lại chúng tôi sẽ tư vấn cùng bạn.",
   },
   {
-    q: "Ảnh chân dung dùng để làm gì?",
-    a: "Ảnh giúp việc cá nhân hoá diện mạo trở nên sát hơn, tinh tế hơn và giàu cảm xúc hơn.",
+    q: "Ảnh chân dung được dùng khi nào?",
+    a: "Ảnh được dùng sau bước chọn mẫu để hoàn thiện phần đầu theo phiên bản riêng của người nhận.",
   },
   {
-    q: "Khi nào có báo giá?",
-    a: "Ngay sau khi nhận yêu cầu, chúng tôi xác nhận lựa chọn và gửi tư vấn kèm mức giá phù hợp.",
+    q: "Sau khi gửi yêu cầu thì sao?",
+    a: "Đội ngũ sẽ liên hệ riêng để xác nhận lựa chọn, tư vấn thêm và chốt phương án phù hợp.",
   },
 ];
 
@@ -67,13 +67,13 @@ export default function HomePage() {
               </div>
 
               <h1 className="font-display mt-7 max-w-4xl text-5xl leading-[0.9] font-semibold tracking-[-0.03em] text-white sm:text-6xl lg:text-7xl">
-                Quà tặng
+                Thiết kế figure
                 <span className="block text-[#ecd6b7]">mang dấu ấn riêng</span>
-                với cảm giác thật cao cấp.
+                cho món quà đáng nhớ.
               </h1>
 
               <p className="mt-7 max-w-2xl text-base leading-8 text-stone-300 sm:text-lg">
-                Một trải nghiệm chọn mẫu tinh gọn, hiện đại và đủ tinh tế để khách muốn ở lại lâu hơn. Mọi thứ được trình bày rõ ràng để việc chọn quà trở nên nhẹ nhàng và sang hơn.
+                Chọn mẫu phù hợp trước trên web. Phần đầu sẽ được cá nhân hoá riêng từ ảnh chân dung sau khi đội ngũ liên hệ tư vấn.
               </p>
 
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -95,7 +95,7 @@ export default function HomePage() {
                 {[
                   { label: "Dáng mẫu", value: `${bodyBases.length}+ lựa chọn sẵn` },
                   { label: "Phong cách", value: `${outfitThemes.length} chủ đề nổi bật` },
-                  { label: "Điểm nhấn", value: `${accessories.length} phụ kiện nổi bật` },
+                  { label: "Điểm nhấn", value: `${accessories.length} phụ kiện để chọn` },
                 ].map((item, index) => (
                   <Reveal key={item.label} delayMs={index * 80} className="h-full">
                     <div className="premium-card glass-panel-soft flex h-full min-h-[128px] flex-col justify-between rounded-[28px] p-5">
@@ -113,21 +113,19 @@ export default function HomePage() {
               <div className="glass-panel hairline relative overflow-hidden rounded-[36px] p-4 sm:p-5">
                 <div className="absolute inset-x-12 top-0 h-32 rounded-full bg-[#f0dbc0]/10 blur-3xl" />
                 <div className="relative rounded-[30px] border border-white/8 bg-[linear-gradient(180deg,rgba(14,15,20,0.96),rgba(17,18,24,0.86))] p-5 sm:p-6">
-                  <div className="flex items-start gap-4">
-                    <div>
-                      <p className="text-xs tracking-[0.22em] text-stone-500 uppercase">Premium experience</p>
-                      <h2 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">
-                        Một hành trình đặt quà mượt mà và tinh tế.
-                      </h2>
-                    </div>
+                  <div>
+                    <p className="text-xs tracking-[0.22em] text-stone-500 uppercase">Trải nghiệm chọn mẫu</p>
+                    <h2 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">
+                      Chọn trước phiên bản phù hợp, phần còn lại để chúng tôi hoàn thiện.
+                    </h2>
                   </div>
 
                   <div className="mt-8 grid gap-3">
                     {[
-                      "Chọn dáng và kích thước phù hợp.",
-                      "Phối phong cách theo dịp tặng.",
+                      "Chọn dáng và size phù hợp.",
+                      "Phối trang phục theo dịp tặng.",
                       "Thêm phụ kiện để tạo dấu ấn.",
-                      "Gửi ảnh để cá nhân hoá gương mặt.",
+                      "Gửi ảnh để chuẩn bị phiên bản riêng.",
                     ].map((item, index) => (
                       <div
                         key={item}
@@ -154,7 +152,7 @@ export default function HomePage() {
                       <div className="premium-card glass-panel-soft flex h-full min-h-[108px] flex-col rounded-[24px] p-4">
                         <p className="text-xs tracking-[0.18em] text-stone-500 uppercase">Cá nhân hoá</p>
                         <p className="mt-2 text-base font-semibold text-stone-100">
-                          Gửi ảnh {"->"} duyệt phong cách {"->"} hoàn thiện
+                          Chọn mẫu {"->"} gửi ảnh {"->"} nhận tư vấn
                         </p>
                       </div>
                     </Reveal>
@@ -171,11 +169,11 @@ export default function HomePage() {
               <div className="max-w-2xl">
                 <p className="text-sm tracking-[0.22em] text-[#ebd6ba] uppercase">Quy trình</p>
                 <h2 className="mt-3 text-4xl font-semibold tracking-[-0.03em] text-white sm:text-5xl">
-                  Từ lựa chọn đầu tiên đến món quà hoàn chỉnh.
+                  Bốn bước gọn để đi từ ý tưởng đến phiên bản riêng.
                 </h2>
               </div>
               <p className="max-w-xl text-base leading-8 text-stone-400">
-                Mỗi bước đều được sắp xếp rõ ràng để khách dễ hình dung, dễ ra quyết định và luôn cảm thấy được chăm chút.
+                Mọi thứ bắt đầu từ việc chọn mẫu trước. Sau đó đội ngũ sẽ liên hệ riêng để tư vấn và hoàn thiện phần cá nhân hoá.
               </p>
             </Reveal>
 
@@ -199,10 +197,10 @@ export default function HomePage() {
               <div className="premium-card glass-panel hairline rounded-[34px] p-7 sm:p-8">
                 <p className="text-sm tracking-[0.22em] text-[#ebd6ba] uppercase">Giá trị</p>
                 <h2 className="mt-4 text-4xl font-semibold tracking-[-0.03em] text-white sm:text-5xl">
-                  Tinh tế, bình tĩnh và đủ sang để tạo thiện cảm ngay.
+                  Tinh tế để dễ chọn, rõ ràng để dễ chốt.
                 </h2>
                 <p className="mt-5 text-base leading-8 text-stone-400">
-                  Giao diện được làm lại theo tinh thần tối giản cao cấp: khoảng trắng thoáng, typography rõ, chuyển động mềm và bề mặt kính mờ vừa đủ để tạo cảm giác hiện đại.
+                  Website được thiết kế như nơi khách xem mẫu và gửi yêu cầu tư vấn, không phải một hệ thống mua hàng phức tạp.
                 </p>
               </div>
             </Reveal>
@@ -229,17 +227,17 @@ export default function HomePage() {
                 <div className="absolute left-1/2 top-0 h-40 w-40 -translate-x-1/2 rounded-full bg-[#f1dec4]/10 blur-3xl" />
                 <p className="relative text-sm tracking-[0.22em] text-[#f1dcbc] uppercase">Sẵn sàng bắt đầu</p>
                 <h2 className="relative mt-4 text-4xl font-semibold tracking-[-0.03em] text-white sm:text-5xl">
-                  Chọn mẫu trước, phần còn lại để chúng tôi đồng hành cùng bạn.
+                  Chọn mẫu phù hợp, phần còn lại để chúng tôi đồng hành cùng bạn.
                 </h2>
                 <p className="relative mx-auto mt-5 max-w-2xl text-base leading-8 text-stone-300">
-                  Một trải nghiệm gọn gàng và mượt mà để khách chọn nhanh, cảm thấy yên tâm và muốn đi tiếp tới bước tư vấn.
+                  Preview giúp bạn hình dung tổng thể trước. Sau khi gửi yêu cầu, đội ngũ sẽ liên hệ riêng để hoàn thiện phiên bản cá nhân hoá.
                 </p>
                 <div className="relative mt-8">
                   <Link
                     href="/design"
                     className="premium-button inline-flex rounded-full border border-[#f0d9b9]/30 bg-[#ebd7bd] px-7 py-4 text-sm font-semibold text-stone-950"
                   >
-                    Mở khu vực chọn mẫu
+                    Bắt đầu chọn mẫu
                   </Link>
                 </div>
               </div>
@@ -252,7 +250,7 @@ export default function HomePage() {
             <Reveal className="max-w-2xl">
               <p className="text-sm tracking-[0.22em] text-[#ebd6ba] uppercase">FAQ</p>
               <h2 className="mt-3 text-4xl font-semibold tracking-[-0.03em] text-white sm:text-5xl">
-                Mọi thứ cần biết, được trình bày thật gọn.
+                Mọi điều cần biết, thật ngắn và rõ.
               </h2>
             </Reveal>
 

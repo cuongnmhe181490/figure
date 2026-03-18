@@ -17,10 +17,10 @@ export function SummaryPanel({ config }: SummaryPanelProps) {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <p className="text-xs tracking-[0.18em] text-stone-500 uppercase">Tóm tắt lựa chọn</p>
-          <h3 className="mt-2 text-2xl font-semibold text-stone-50">Phiên bản sẽ được dùng để tư vấn</h3>
+          <h3 className="mt-2 text-2xl font-semibold text-stone-50">Cấu hình mẫu dùng để tư vấn riêng</h3>
         </div>
         <div className="rounded-full border border-[#ead3b4]/25 bg-[#ead3b4]/10 px-4 py-2 text-sm font-medium text-[#f5ddbc]">
-          Giá tham khảo từ {formatCurrency(size.priceFrom)}
+          Tham khảo từ {formatCurrency(size.priceFrom)}
         </div>
       </div>
 

@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import {
@@ -25,7 +24,7 @@ import type { AccessoryId, FigureConfig, OutfitThemeId } from "@/types/figure";
 type SubmitStatus =
   | { type: "idle" }
   | { type: "loading" }
-  | { type: "success"; message: string; reviewUrl: string }
+  | { type: "success"; message: string }
   | { type: "error"; message: string };
 
 const maxAccessoryCount = 3;
@@ -124,8 +123,7 @@ export function FigureConfigurator() {
     try {
       const formData = new FormData();
       formData.append("customerName", customerName);
-      formData.append("email", email);
-      formData.append("phone", phone);
+      formData.append("contact", `${phone} / ${email}`);
       formData.append("note", note);
       formData.append("imageUrl", imageUrl);
       formData.append("config", JSON.stringify(config));
@@ -134,25 +132,20 @@ export function FigureConfigurator() {
         formData.append("imageFile", imageFile);
       }
 
-      const response = await fetch("/api/orders", {
+      const response = await fetch("/api/inquiry", {
         method: "POST",
         body: formData,
       });
 
-      const result = (await response.json()) as {
-        success: boolean;
-        message?: string;
-        reviewUrl?: string;
-      };
+      const result = (await response.json()) as { success: boolean; message?: string };
 
       if (!response.ok || !result.success) {
-        throw new Error(result.message ?? "Chưa thể tạo yêu cầu lúc này.");
+        throw new Error(result.message ?? "Chưa thể ghi nhận yêu cầu lúc này.");
       }
 
       setSubmitStatus({
         type: "success",
         message: result.message ?? "Yêu cầu của bạn đã được ghi nhận.",
-        reviewUrl: result.reviewUrl ?? "/design",
       });
       setCustomerName("");
       setEmail("");
@@ -186,27 +179,26 @@ export function FigureConfigurator() {
                   ))}
                   {activeCollection ? (
                     <span className="rounded-full border border-[#ead3b4]/20 bg-[#ead3b4]/10 px-3 py-1 text-xs tracking-[0.16em] text-[#f2dec5] uppercase">
-                      Preset {activeCollection.category}
+                      Gợi ý {activeCollection.category}
                     </span>
                   ) : null}
                 </div>
 
                 <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
                   <div className="max-w-2xl">
-                    <p className="text-sm tracking-[0.22em] text-[#ead3b4] uppercase">Builder</p>
+                    <p className="text-sm tracking-[0.22em] text-[#ead3b4] uppercase">Chọn mẫu trước</p>
                     <h1 className="mt-3 text-4xl font-semibold tracking-[-0.03em] text-white sm:text-5xl">
-                      Chọn cấu hình, lưu lại và gửi đơn ngay trong một luồng gọn.
+                      Chọn phiên bản figure phù hợp với món quà của bạn.
                     </h1>
                     <p className="mt-4 max-w-2xl text-base leading-8 text-stone-300">
-                      Các lựa chọn của bạn được lưu lại ngay trên máy để không bị mất giữa chừng. Khi gửi thông tin,
-                      hệ thống sẽ tạo một trang review riêng để khách tiếp tục theo dõi và phản hồi.
+                      Preview này giúp bạn hình dung tổng thể trước. Phần đầu sẽ được cá nhân hoá riêng từ ảnh chân dung sau khi đội ngũ liên hệ tư vấn.
                     </p>
                   </div>
 
                   <div className="glass-panel-soft rounded-[30px] px-5 py-4">
-                    <p className="text-sm text-stone-200">Mức giá tham khảo</p>
+                    <p className="text-sm text-stone-200">Mức tham khảo</p>
                     <p className="mt-2 text-3xl font-semibold text-[#f5ddbc]">{formatCurrency(activeSize.priceFrom)}</p>
-                    <p className="mt-1 text-sm text-stone-300">Hoàn thiện trong {activeSize.productionTime}</p>
+                    <p className="mt-1 text-sm text-stone-300">Hoàn thiện sau bước tư vấn</p>
                   </div>
                 </div>
               </div>
@@ -231,13 +223,13 @@ export function FigureConfigurator() {
                   options={sizeOptions.map((size) => ({
                     id: size.id,
                     title: size.label,
-                    description: `Cao ${size.heightCm}cm, hoàn thiện trong ${size.productionTime}.`,
+                    description: `Cao ${size.heightCm}cm, phù hợp để trưng bày và làm quà tặng.`,
                     meta: `Từ ${formatCurrency(size.priceFrom)}`,
                   }))}
                 />
 
                 <OptionCardGroup
-                  label="Phong cách"
+                  label="Trang phục"
                   value={config.outfitTheme}
                   onChange={handleThemeChange}
                   options={outfitThemes.map((theme) => ({
@@ -283,7 +275,7 @@ export function FigureConfigurator() {
                   <div>
                     <h3 className="text-sm font-semibold tracking-[0.18em] text-[#ead3b4] uppercase">Ảnh chân dung</h3>
                     <p className="mt-3 text-sm leading-7 text-stone-300">
-                      Gửi ảnh rõ mặt để đội ngũ có thêm chất liệu cho phần tư vấn và tinh chỉnh sau đó.
+                      Gửi ảnh rõ mặt để chúng tôi chuẩn bị phần đầu theo phiên bản riêng sau khi xác nhận mẫu.
                     </p>
                   </div>
 
@@ -319,9 +311,9 @@ export function FigureConfigurator() {
 
                 <section className="glass-panel-soft rounded-[32px] p-5 sm:p-6">
                   <div>
-                    <h3 className="text-sm font-semibold tracking-[0.18em] text-stone-400 uppercase">Tạo đơn hàng</h3>
+                    <h3 className="text-sm font-semibold tracking-[0.18em] text-stone-400 uppercase">Gửi yêu cầu tư vấn</h3>
                     <p className="mt-3 text-sm leading-7 text-stone-300">
-                      Điền thông tin liên hệ để hệ thống tạo đơn và cấp link review riêng cho khách.
+                      Để lại thông tin để đội ngũ liên hệ riêng, xác nhận lựa chọn và hoàn thiện phương án phù hợp.
                     </p>
                   </div>
 
@@ -362,7 +354,7 @@ export function FigureConfigurator() {
                   </div>
 
                   <label className="mt-4 block space-y-2">
-                    <span className="text-sm text-stone-300">Ghi chú thêm</span>
+                    <span className="text-sm text-stone-300">Điều bạn muốn thêm</span>
                     <textarea
                       rows={5}
                       value={note}
@@ -374,8 +366,8 @@ export function FigureConfigurator() {
 
                   <div className="mt-5 flex flex-col gap-4 border-t border-white/8 pt-5 md:flex-row md:items-center md:justify-between">
                     <div>
-                      <p className="text-sm text-stone-300">Cấu hình được lưu tự động trong localStorage.</p>
-                      <p className="text-xs text-stone-500">Sau khi gửi, khách sẽ nhận được một link review riêng để xem model và phản hồi.</p>
+                      <p className="text-sm text-stone-300">Bạn đang chọn cấu hình mẫu trước để đội ngũ dễ tư vấn hơn.</p>
+                      <p className="text-xs text-stone-500">Sau khi nhận yêu cầu, chúng tôi sẽ liên hệ riêng để chốt phiên bản cá nhân hoá.</p>
                     </div>
 
                     <button
@@ -383,19 +375,13 @@ export function FigureConfigurator() {
                       disabled={submitStatus.type === "loading"}
                       className="premium-button rounded-full border border-[#f0d9b9]/30 bg-[#ebd7bd] px-6 py-3 text-sm font-semibold text-stone-950 disabled:cursor-not-allowed disabled:opacity-70"
                     >
-                      {submitStatus.type === "loading" ? "Đang tạo đơn..." : "Tạo đơn"}
+                      {submitStatus.type === "loading" ? "Đang gửi..." : "Gửi yêu cầu tư vấn"}
                     </button>
                   </div>
 
                   {submitStatus.type === "success" ? (
                     <div className="mt-4 rounded-[22px] border border-emerald-400/20 bg-emerald-500/10 p-4 text-sm text-emerald-200">
                       <p>{submitStatus.message}</p>
-                      <Link
-                        href={submitStatus.reviewUrl}
-                        className="mt-3 inline-flex font-medium text-white underline underline-offset-4"
-                      >
-                        Mở trang review riêng
-                      </Link>
                     </div>
                   ) : null}
 
@@ -417,11 +403,11 @@ export function FigureConfigurator() {
 
           <Reveal delayMs={180}>
             <div className="glass-panel-soft rounded-[32px] p-5">
-              <p className="text-xs tracking-[0.18em] text-stone-500 uppercase">Flow mới</p>
+              <p className="text-xs tracking-[0.18em] text-stone-500 uppercase">Lưu ý</p>
               <ul className="mt-4 space-y-3 text-sm leading-7 text-stone-300">
-                <li>Cấu hình được lưu tự động giữa các lần quay lại.</li>
-                <li>Khi tạo đơn, hệ thống sinh review token ngẫu nhiên và khó đoán.</li>
-                <li>Admin có thể cập nhật trạng thái, tải model GLB và ảnh preview lên cùng một nơi.</li>
+                <li>Preview hiện tại dùng để bạn hình dung tổng thể mẫu figure.</li>
+                <li>Phần đầu sẽ được cá nhân hoá riêng sau khi nhận ảnh chân dung.</li>
+                <li>Sau khi gửi yêu cầu, đội ngũ sẽ liên hệ riêng để tư vấn và hoàn thiện phiên bản phù hợp.</li>
               </ul>
             </div>
           </Reveal>

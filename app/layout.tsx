@@ -16,28 +16,28 @@ const cormorant = Cormorant_Garamond({
 export const metadata: Metadata = {
   metadataBase: new URL("https://figure1.vercel.app"),
   title: {
-    default: "Figure Atelier | Quà tặng figure cá nhân hoá",
+    default: "Figure Atelier | Figure cá nhân hoá làm quà tặng",
     template: "%s | Figure Atelier",
   },
   description:
-    "Chọn mẫu, gửi ảnh và nhận tư vấn để hoàn thiện figure cá nhân hoá cho những dịp thật đặc biệt.",
+    "Chọn mẫu trước trên web, gửi ảnh chân dung và để đội ngũ liên hệ tư vấn cho phiên bản figure mang dấu ấn riêng.",
   keywords: [
-    "figurine 3d",
-    "mô hình 3d cá nhân hóa",
+    "figure cá nhân hoá",
+    "quà tặng figure",
+    "quà tặng kỷ niệm",
+    "figure theo ảnh",
     "custom figure",
-    "quà tặng figurine",
-    "3d printed figure",
   ],
   openGraph: {
     title: "Figure Atelier",
-    description: "Một trải nghiệm chọn mẫu tinh gọn cho figure cá nhân hoá mang dấu ấn riêng.",
+    description: "Chọn mẫu, gửi ảnh và nhận tư vấn để hoàn thiện figure cá nhân hoá cho những dịp đặc biệt.",
     type: "website",
     url: "https://figure1.vercel.app",
   },
   twitter: {
     card: "summary_large_image",
     title: "Figure Atelier",
-    description: "Chọn mẫu, gửi ảnh và nhận tư vấn cho món quà cá nhân hoá chỉ trong vài bước.",
+    description: "Chọn mẫu phù hợp, phần còn lại để đội ngũ hoàn thiện phiên bản riêng cho bạn.",
   },
 };
 
