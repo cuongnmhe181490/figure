@@ -34,7 +34,7 @@ export default function HomePage() {
                   Bắt đầu chọn mẫu
                 </Link>
                 <a
-                  href="#how-it-works"
+                  href="#quy-trinh"
                   className="rounded-full border border-white/12 px-7 py-4 text-center text-sm font-semibold text-stone-100 transition hover:bg-white/6"
                 >
                   Xem quy trình
@@ -112,7 +112,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="how-it-works" className="mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8 lg:py-16">
+        <section id="quy-trinh" className="scroll-mt-24 mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8 lg:py-16">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
               <p className="text-sm tracking-[0.22em] text-[#e3bb8d] uppercase">Quy trình</p>
@@ -156,7 +156,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="why-us" className="mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8 lg:py-16">
+        <section id="gia-tri" className="scroll-mt-24 mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8 lg:py-16">
           <div className="grid gap-6 lg:grid-cols-[0.86fr_1.14fr]">
             <div className="rounded-[34px] border border-white/10 bg-[rgba(255,255,255,0.04)] p-7">
               <p className="text-sm tracking-[0.22em] text-[#e3bb8d] uppercase">Giá trị</p>
@@ -206,7 +206,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="faq" className="mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8 lg:py-16">
+        <section id="faq" className="scroll-mt-24 mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8 lg:py-16">
           <div className="grid gap-4 md:grid-cols-3">
             {[
               {

@@ -17,10 +17,10 @@ export function SiteHeader() {
         </Link>
 
         <nav className="hidden items-center gap-8 text-sm text-stone-300 md:flex">
-          <a href="#how-it-works" className="transition hover:text-white">
+          <a href="#quy-trinh" className="transition hover:text-white">
             Quy trình
           </a>
-          <a href="#why-us" className="transition hover:text-white">
+          <a href="#gia-tri" className="transition hover:text-white">
             Giá trị
           </a>
           <a href="#faq" className="transition hover:text-white">
