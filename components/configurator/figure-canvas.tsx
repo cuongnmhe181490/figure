@@ -8,6 +8,7 @@ import type { FigureConfig } from "@/types/figure";
 
 type FigureCanvasProps = {
   config: FigureConfig;
+  focusMode?: boolean;
 };
 
 function FigureModel({ config }: FigureCanvasProps) {
@@ -115,13 +116,13 @@ function FigureModel({ config }: FigureCanvasProps) {
   );
 }
 
-export function FigureCanvas({ config }: FigureCanvasProps) {
+export function FigureCanvas({ config, focusMode = false }: FigureCanvasProps) {
   return (
     <Canvas
       shadows
-      camera={{ position: [0, 1.1, 4.9], fov: 34 }}
-      dpr={[1, 1.6]}
-      className="h-[460px] w-full"
+      camera={{ position: focusMode ? [0, 1.1, 4.6] : [0, 1.1, 4.9], fov: focusMode ? 31 : 34 }}
+      dpr={focusMode ? [1, 2] : [1, 1.6]}
+      className="h-full w-full"
     >
       <color attach="background" args={["#121318"]} />
       <fog attach="fog" args={["#121318", 5.2, 10.2]} />
@@ -143,12 +144,12 @@ export function FigureCanvas({ config }: FigureCanvasProps) {
         <meshBasicMaterial color="#ffffff" transparent opacity={0.035} />
       </mesh>
 
-      <FigureModel config={config} />
+      <FigureModel config={config} focusMode={focusMode} />
 
       <ContactShadows
         position={[0, -1.38, 0]}
         opacity={0.32}
-        scale={6}
+        scale={focusMode ? 7 : 6}
         blur={2.4}
         far={4}
         resolution={512}
@@ -156,12 +157,12 @@ export function FigureCanvas({ config }: FigureCanvasProps) {
       />
 
       <OrbitControls
-        enablePan={false}
-        minDistance={4}
-        maxDistance={8}
+        enablePan={focusMode}
+        minDistance={focusMode ? 3.4 : 4}
+        maxDistance={focusMode ? 10 : 8}
         maxPolarAngle={Math.PI / 2.03}
         minPolarAngle={Math.PI / 3.4}
-        autoRotate
+        autoRotate={!focusMode}
         autoRotateSpeed={0.75}
       />
     </Canvas>
