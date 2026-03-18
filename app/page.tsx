@@ -95,12 +95,14 @@ export default function HomePage() {
                 {[
                   { label: "Dáng mẫu", value: `${bodyBases.length}+ lựa chọn sẵn` },
                   { label: "Phong cách", value: `${outfitThemes.length} chủ đề nổi bật` },
-                  { label: "Điểm nhấn", value: `${accessories.length} phụ kiện chọn sẵn` },
+                  { label: "Điểm nhấn", value: `${accessories.length} phụ kiện nổi bật` },
                 ].map((item, index) => (
                   <Reveal key={item.label} delayMs={index * 80} className="h-full">
                     <div className="premium-card glass-panel-soft flex h-full min-h-[128px] flex-col justify-between rounded-[28px] p-5">
                       <p className="text-sm text-stone-400">{item.label}</p>
-                      <p className="mt-2 text-xl font-semibold text-stone-100">{item.value}</p>
+                      <p className="mt-2 text-[1.85rem] leading-none font-semibold tracking-[-0.03em] text-stone-100">
+                        {item.value}
+                      </p>
                     </div>
                   </Reveal>
                 ))}
@@ -111,16 +113,13 @@ export default function HomePage() {
               <div className="glass-panel hairline relative overflow-hidden rounded-[36px] p-4 sm:p-5">
                 <div className="absolute inset-x-12 top-0 h-32 rounded-full bg-[#f0dbc0]/10 blur-3xl" />
                 <div className="relative rounded-[30px] border border-white/8 bg-[linear-gradient(180deg,rgba(14,15,20,0.96),rgba(17,18,24,0.86))] p-5 sm:p-6">
-                  <div className="flex items-start justify-between gap-4">
+                  <div className="flex items-start gap-4">
                     <div>
                       <p className="text-xs tracking-[0.22em] text-stone-500 uppercase">Premium experience</p>
                       <h2 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">
                         Một hành trình đặt quà mượt mà và tinh tế.
                       </h2>
                     </div>
-                    <span className="rounded-full border border-[#f0dbc0]/20 bg-[#f0dbc0]/10 px-4 py-2 text-[11px] tracking-[0.18em] text-[#f2dec5] uppercase">
-                      Calm motion
-                    </span>
                   </div>
 
                   <div className="mt-8 grid gap-3">
@@ -192,8 +191,8 @@ export default function HomePage() {
 
         <section id="gia-tri" className="scroll-mt-28 px-5 py-12 sm:px-6 lg:px-8 lg:py-18">
           <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-            <Reveal>
-              <div className="glass-panel hairline rounded-[34px] p-7 sm:p-8">
+            <Reveal delayMs={60}>
+              <div className="premium-card glass-panel hairline rounded-[34px] p-7 sm:p-8">
                 <p className="text-sm tracking-[0.22em] text-[#ebd6ba] uppercase">Giá trị</p>
                 <h2 className="mt-4 text-4xl font-semibold tracking-[-0.03em] text-white sm:text-5xl">
                   Tinh tế, bình tĩnh và đủ sang để tạo thiện cảm ngay.
@@ -221,8 +220,8 @@ export default function HomePage() {
 
         <section className="px-5 py-12 sm:px-6 lg:px-8 lg:py-18">
           <div className="mx-auto max-w-7xl">
-            <Reveal>
-              <div className="glass-panel relative overflow-hidden rounded-[40px] px-6 py-10 text-center sm:px-10 sm:py-14">
+            <Reveal delayMs={80}>
+              <div className="premium-card glass-panel relative overflow-hidden rounded-[40px] px-6 py-10 text-center sm:px-10 sm:py-14">
                 <div className="absolute left-1/2 top-0 h-40 w-40 -translate-x-1/2 rounded-full bg-[#f1dec4]/10 blur-3xl" />
                 <p className="relative text-sm tracking-[0.22em] text-[#f1dcbc] uppercase">Sẵn sàng bắt đầu</p>
                 <h2 className="relative mt-4 text-4xl font-semibold tracking-[-0.03em] text-white sm:text-5xl">
