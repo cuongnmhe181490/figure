@@ -142,18 +142,22 @@ export default function HomePage() {
                   </div>
 
                   <div className="mt-6 grid gap-3 sm:grid-cols-2 sm:auto-rows-fr">
-                    <div className="glass-panel-soft flex h-full min-h-[108px] flex-col rounded-[24px] p-4">
-                      <p className="text-xs tracking-[0.18em] text-stone-500 uppercase">Kích thước</p>
-                      <p className="mt-2 text-base font-semibold text-stone-100">
-                        {sizeOptions.map((item) => item.id).join(" / ")}
-                      </p>
-                    </div>
-                    <div className="glass-panel-soft flex h-full min-h-[108px] flex-col rounded-[24px] p-4">
-                      <p className="text-xs tracking-[0.18em] text-stone-500 uppercase">Cá nhân hoá</p>
-                      <p className="mt-2 text-base font-semibold text-stone-100">
-                        Gửi ảnh {"->"} duyệt phong cách {"->"} hoàn thiện
-                      </p>
-                    </div>
+                    <Reveal delayMs={260} className="h-full">
+                      <div className="premium-card glass-panel-soft flex h-full min-h-[108px] flex-col rounded-[24px] p-4">
+                        <p className="text-xs tracking-[0.18em] text-stone-500 uppercase">Kích thước</p>
+                        <p className="mt-2 text-base font-semibold text-stone-100">
+                          {sizeOptions.map((item) => item.id).join(" / ")}
+                        </p>
+                      </div>
+                    </Reveal>
+                    <Reveal delayMs={320} className="h-full">
+                      <div className="premium-card glass-panel-soft flex h-full min-h-[108px] flex-col rounded-[24px] p-4">
+                        <p className="text-xs tracking-[0.18em] text-stone-500 uppercase">Cá nhân hoá</p>
+                        <p className="mt-2 text-base font-semibold text-stone-100">
+                          Gửi ảnh {"->"} duyệt phong cách {"->"} hoàn thiện
+                        </p>
+                      </div>
+                    </Reveal>
                   </div>
                 </div>
               </div>
