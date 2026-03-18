@@ -83,7 +83,7 @@ export function FigurePreview({ config }: FigurePreviewProps) {
           </div>
 
           <div className="mt-5 overflow-hidden rounded-[30px] border border-white/8 bg-[radial-gradient(circle_at_top,rgba(234,211,180,0.12),transparent_34%),linear-gradient(180deg,#121318_0%,#101116_100%)]">
-            <div className="relative h-[480px] w-full sm:h-[560px]">
+            <div className="relative isolate h-[480px] w-full touch-none sm:h-[560px]">
               <div className="pointer-events-none absolute left-6 top-6 z-10 rounded-full border border-white/10 bg-[rgba(12,12,16,0.48)] px-3 py-1.5 text-[11px] tracking-[0.16em] text-stone-300 uppercase backdrop-blur-xl">
                 Cá nhân hoá từ ảnh của bạn
               </div>
@@ -123,11 +123,13 @@ export function FigurePreview({ config }: FigurePreviewProps) {
         className={`fixed inset-0 z-[70] flex items-center justify-center bg-[rgba(7,8,10,0.72)] px-4 py-6 backdrop-blur-xl transition duration-300 ${
           isFocusOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
         }`}
+        onClick={() => setIsFocusOpen(false)}
       >
         <div
-          className={`glass-panel hairline relative w-full max-w-6xl rounded-[36px] p-4 transition duration-300 sm:p-5 ${
+          className={`glass-panel hairline relative w-full max-w-[min(90vw,1180px)] rounded-[36px] p-4 transition duration-300 sm:p-5 ${
             isFocusOpen ? "scale-100" : "scale-[0.985]"
           }`}
+          onClick={(event) => event.stopPropagation()}
         >
           <div className="rounded-[32px] border border-white/8 bg-[linear-gradient(180deg,rgba(14,15,20,0.98),rgba(17,18,24,0.92))] p-4 sm:p-5">
             <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -148,7 +150,7 @@ export function FigurePreview({ config }: FigurePreviewProps) {
             </div>
 
             <div className="overflow-hidden rounded-[30px] border border-white/8 bg-[radial-gradient(circle_at_top,rgba(234,211,180,0.1),transparent_34%),linear-gradient(180deg,#121318_0%,#101116_100%)]">
-              <div className="h-[70vh] min-h-[420px] w-full">
+              <div className="h-[min(84vh,780px)] min-h-[420px] w-full touch-none">
                 <FigureCanvas config={config} focusMode />
               </div>
             </div>

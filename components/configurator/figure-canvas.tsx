@@ -122,7 +122,8 @@ export function FigureCanvas({ config, focusMode = false }: FigureCanvasProps) {
       shadows
       camera={{ position: focusMode ? [0, 1.1, 4.6] : [0, 1.1, 4.9], fov: focusMode ? 31 : 34 }}
       dpr={focusMode ? [1, 2] : [1, 1.6]}
-      className="h-full w-full"
+      className="h-full w-full touch-none"
+      style={{ touchAction: "none" }}
     >
       <color attach="background" args={["#121318"]} />
       <fog attach="fog" args={["#121318", 5.2, 10.2]} />
@@ -157,7 +158,14 @@ export function FigureCanvas({ config, focusMode = false }: FigureCanvasProps) {
       />
 
       <OrbitControls
-        enablePan={focusMode}
+        enablePan
+        enableRotate
+        enableZoom
+        enableDamping
+        dampingFactor={0.08}
+        rotateSpeed={0.9}
+        zoomSpeed={0.92}
+        panSpeed={0.78}
         minDistance={focusMode ? 3.4 : 4}
         maxDistance={focusMode ? 10 : 8}
         maxPolarAngle={Math.PI / 2.03}
