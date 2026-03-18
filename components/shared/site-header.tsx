@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { SocialLinks } from "@/components/shared/social-links";
 
 const sectionItems = [
   { id: "quy-trinh", label: "Quy trình" },
@@ -42,11 +43,11 @@ export function SiteHeader() {
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "border-b border-white/10 bg-[rgba(11,12,16,0.72)] shadow-[0_18px_40px_rgba(0,0,0,0.16)] backdrop-blur-2xl"
-          : "border-b border-transparent bg-[rgba(11,12,16,0.34)] backdrop-blur-xl"
+          ? "border-b border-white/10 bg-[rgba(11,12,16,0.78)] shadow-[0_18px_40px_rgba(0,0,0,0.16)] backdrop-blur-2xl"
+          : "border-b border-transparent bg-[rgba(11,12,16,0.4)] backdrop-blur-xl"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <Link href="/" className="group flex items-center gap-3">
           <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/6 text-sm font-semibold tracking-[0.24em] text-stone-100 transition duration-300 group-hover:border-white/18 group-hover:bg-white/10">
             F3D
@@ -57,32 +58,36 @@ export function SiteHeader() {
           </div>
         </Link>
 
-        <nav className="hidden items-center gap-2 rounded-full border border-white/8 bg-white/5 p-1.5 md:flex">
-          {pathname === "/"
-            ? sectionItems.map((item) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => handleSectionNavigate(item.id)}
-                  className="rounded-full px-4 py-2 text-sm text-stone-300 transition duration-300 hover:bg-white/8 hover:text-white"
-                >
-                  {item.label}
-                </button>
-              ))
-            : null}
+        <div className="hidden items-center gap-5 xl:flex">
+          <SocialLinks size="large" layout="row" showText={false} />
 
-          {pageItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`rounded-full px-4 py-2 text-sm transition duration-300 hover:bg-white/8 hover:text-white ${
-                pathname === item.href ? "bg-white/8 text-white" : "text-stone-300"
-              }`}
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+          <nav className="flex items-center gap-2 rounded-full border border-white/8 bg-white/5 p-1.5">
+            {pathname === "/"
+              ? sectionItems.map((item) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => handleSectionNavigate(item.id)}
+                    className="rounded-full px-4 py-2 text-sm text-stone-300 transition duration-300 hover:bg-white/8 hover:text-white"
+                  >
+                    {item.label}
+                  </button>
+                ))
+              : null}
+
+            {pageItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`rounded-full px-4 py-2 text-sm transition duration-300 hover:bg-white/8 hover:text-white ${
+                  pathname === item.href ? "bg-white/8 text-white" : "text-stone-300"
+                }`}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
 
         <div className="flex items-center gap-3">
           <Link
@@ -95,7 +100,7 @@ export function SiteHeader() {
           <button
             type="button"
             onClick={() => setIsMenuOpen((current) => !current)}
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/6 text-stone-100 transition duration-300 hover:bg-white/10 md:hidden"
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/6 text-stone-100 transition duration-300 hover:bg-white/10 xl:hidden"
             aria-label="Mở menu"
             aria-expanded={isMenuOpen}
           >
@@ -109,11 +114,13 @@ export function SiteHeader() {
       </div>
 
       <div
-        className={`overflow-hidden border-t border-white/8 bg-[rgba(12,12,16,0.82)] backdrop-blur-2xl transition-all duration-300 md:hidden ${
-          isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        className={`overflow-hidden border-t border-white/8 bg-[rgba(12,12,16,0.86)] backdrop-blur-2xl transition-all duration-300 xl:hidden ${
+          isMenuOpen ? "max-h-[32rem] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-4 sm:px-6">
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-4 sm:px-6">
+          <SocialLinks size="large" layout="stack" showText={false} className="max-w-none" />
+
           {pathname === "/"
             ? sectionItems.map((item, index) => (
                 <button
@@ -140,7 +147,7 @@ export function SiteHeader() {
           <Link
             href="/design"
             onClick={() => setIsMenuOpen(false)}
-            className="premium-button mt-2 inline-flex items-center justify-center rounded-2xl border border-[#f0d9b9]/30 bg-[#ebd7bd] px-4 py-3 text-sm font-medium text-stone-950"
+            className="premium-button mt-1 inline-flex items-center justify-center rounded-2xl border border-[#f0d9b9]/30 bg-[#ebd7bd] px-4 py-3 text-sm font-medium text-stone-950"
           >
             Bắt đầu chọn mẫu
           </Link>

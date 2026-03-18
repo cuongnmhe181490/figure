@@ -7,16 +7,23 @@ type SocialItem = {
   label: string;
   href: string;
   icon: ReactNode;
+  accentClassName: string;
 };
 
-const iconClassName = "h-[18px] w-[18px]";
+type SocialLinksProps = {
+  size?: "default" | "large";
+  layout?: "row" | "stack";
+  showText?: boolean;
+  className?: string;
+};
 
 const socialItems: SocialItem[] = [
   {
     label: "Zalo",
     href: "#",
+    accentClassName: "text-[#4aa3ff] hover:border-[#4aa3ff]/35 hover:bg-[#4aa3ff]/10 hover:text-[#8cc7ff]",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={iconClassName}>
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="h-full w-full">
         <path d="M4.5 7.5c0-1.657 1.343-3 3-3h9c1.657 0 3 1.343 3 3v6.5c0 1.657-1.343 3-3 3H11l-3.75 2.5V17H7.5c-1.657 0-3-1.343-3-3V7.5Z" stroke="currentColor" strokeWidth="1.5" />
         <path d="M8.5 9.25h2.7l-2.7 5.5h2.95M13.6 9.25h2.9l-2.9 5.5h2.9" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
       </svg>
@@ -25,8 +32,9 @@ const socialItems: SocialItem[] = [
   {
     label: "Facebook",
     href: "#",
+    accentClassName: "text-[#5f8dff] hover:border-[#5f8dff]/35 hover:bg-[#5f8dff]/10 hover:text-[#9db8ff]",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={iconClassName}>
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="h-full w-full">
         <path d="M13.25 20v-6h2.2l.35-2.6h-2.55v-1.7c0-.75.2-1.3 1.3-1.3H16V6.05c-.25-.03-1.08-.1-2.05-.1-2.03 0-3.45 1.24-3.45 3.5v1.95H8.25V14h2.25v6h2.75Z" fill="currentColor" />
       </svg>
     ),
@@ -34,8 +42,9 @@ const socialItems: SocialItem[] = [
   {
     label: "TikTok",
     href: "#",
+    accentClassName: "text-[#f3d9b8] hover:border-[#ff7fb8]/35 hover:bg-[#ff7fb8]/10 hover:text-[#ffd0e5]",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={iconClassName}>
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="h-full w-full">
         <path d="M14.75 5.5c.28 1.52 1.5 2.72 3.05 2.95v2.3c-1.18-.03-2.28-.4-3.05-1.02v4.77a4.5 4.5 0 1 1-4.5-4.5c.28 0 .55.03.8.08v2.35a2.25 2.25 0 1 0 1.45 2.1V5.5h2.25Z" fill="currentColor" />
       </svg>
     ),
@@ -43,8 +52,9 @@ const socialItems: SocialItem[] = [
   {
     label: "Instagram",
     href: "#",
+    accentClassName: "text-[#ff9b78] hover:border-[#ff9b78]/35 hover:bg-[#ff9b78]/10 hover:text-[#ffd2bf]",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={iconClassName}>
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="h-full w-full">
         <rect x="4.75" y="4.75" width="14.5" height="14.5" rx="4.25" stroke="currentColor" strokeWidth="1.5" />
         <circle cx="12" cy="12" r="3.25" stroke="currentColor" strokeWidth="1.5" />
         <circle cx="16.4" cy="7.6" r="1" fill="currentColor" />
@@ -53,13 +63,36 @@ const socialItems: SocialItem[] = [
   },
 ];
 
-export function SocialLinks() {
+export function SocialLinks({
+  size = "default",
+  layout = "stack",
+  showText = true,
+  className = "",
+}: SocialLinksProps) {
+  const wrapperClassName =
+    layout === "row"
+      ? "flex items-center gap-3"
+      : "max-w-md";
+
+  const iconBoxClassName =
+    size === "large"
+      ? "h-12 w-12"
+      : "h-11 w-11";
+
+  const iconClassName =
+    size === "large"
+      ? "h-[20px] w-[20px]"
+      : "h-[18px] w-[18px]";
+
   return (
-    <div className="max-w-md">
-      <p className="text-sm leading-7 text-stone-400">
-        Kết nối với chúng tôi qua kênh bạn thuận tiện nhất để xem thêm mẫu hoàn thiện và tiếp tục trao đổi.
-      </p>
-      <div className="mt-4 flex flex-wrap items-center gap-3">
+    <div className={`${wrapperClassName} ${className}`.trim()}>
+      {showText ? (
+        <p className={`text-sm leading-7 text-stone-400 ${layout === "row" ? "hidden xl:block" : ""}`}>
+          Kết nối với chúng tôi qua kênh bạn thuận tiện nhất để xem thêm mẫu hoàn thiện và tiếp tục trao đổi.
+        </p>
+      ) : null}
+
+      <div className="flex flex-wrap items-center gap-3">
         {socialItems.map((item) => {
           const isPlaceholder = item.href === "#";
 
@@ -69,9 +102,9 @@ export function SocialLinks() {
               href={item.href}
               aria-label={`Mở ${item.label}`}
               {...(!isPlaceholder ? { target: "_blank", rel: "noreferrer" } : {})}
-              className="premium-button inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-stone-300 transition hover:border-[#ead3b4]/25 hover:bg-white/8 hover:text-[#f3dfc7]"
+              className={`premium-button inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 transition ${iconBoxClassName} ${item.accentClassName}`}
             >
-              {item.icon}
+              <span className={iconClassName}>{item.icon}</span>
             </Link>
           );
         })}
