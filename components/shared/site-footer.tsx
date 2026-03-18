@@ -1,3 +1,5 @@
+import { SocialLinks } from "@/components/shared/social-links";
+
 export function SiteFooter() {
   return (
     <footer className="mt-12 border-t border-white/8 bg-[rgba(255,255,255,0.02)]">
@@ -8,15 +10,20 @@ export function SiteFooter() {
             Nơi khách chọn mẫu trước, gửi ảnh chân dung và nhận tư vấn riêng để hoàn thiện món quà mang dấu ấn cá nhân.
           </p>
         </div>
-        <div className="flex flex-wrap gap-3 self-start">
-          {["Chọn mẫu dễ dàng", "Gửi ảnh chân dung", "Nhận tư vấn riêng"].map((item) => (
-            <span
-              key={item}
-              className="rounded-full border border-white/8 bg-white/4 px-4 py-2 text-xs tracking-[0.16em] text-stone-300 uppercase"
-            >
-              {item}
-            </span>
-          ))}
+
+        <div className="flex flex-col gap-5 self-start lg:items-end">
+          <div className="flex flex-wrap gap-3 lg:justify-end">
+            {["Chọn mẫu dễ dàng", "Gửi ảnh chân dung", "Nhận tư vấn riêng"].map((item) => (
+              <span
+                key={item}
+                className="rounded-full border border-white/8 bg-white/4 px-4 py-2 text-xs tracking-[0.16em] text-stone-300 uppercase"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+
+          <SocialLinks />
         </div>
       </div>
     </footer>
