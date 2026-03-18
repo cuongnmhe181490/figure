@@ -6,7 +6,7 @@ import { SiteHeader } from "@/components/shared/site-header";
 
 export const metadata: Metadata = {
   title: "Chọn mẫu figure",
-  description: "Chọn mẫu, gửi ảnh chân dung và để đội ngũ liên hệ tư vấn cho phiên bản cá nhân hoá của bạn.",
+  description: "Chọn mẫu trước trên web, gửi ảnh ngay hoặc gửi sau và để đội ngũ liên hệ tư vấn cho phiên bản cá nhân hoá của bạn.",
 };
 
 export default function DesignPage() {

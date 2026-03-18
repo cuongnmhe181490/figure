@@ -13,7 +13,7 @@ const processItems = [
   {
     step: "02",
     title: "Gửi ảnh chân dung",
-    text: "Ảnh giúp chúng tôi chuẩn bị phần đầu theo đúng tinh thần riêng của người nhận.",
+    text: "Bạn có thể gửi ảnh ngay trên web hoặc gửi sau qua kênh liên hệ thuận tiện.",
   },
   {
     step: "03",
@@ -30,18 +30,18 @@ const processItems = [
 const valueItems = [
   { id: "01", text: "Khách có thể chọn mẫu trước theo cách ngắn gọn và dễ hiểu." },
   { id: "02", text: "Mọi lựa chọn đều hướng tới cảm giác quà tặng tinh tế và chỉn chu." },
-  { id: "03", text: "Ảnh chân dung sẽ được dùng để hoàn thiện phần riêng sau bước tư vấn." },
+  { id: "03", text: "Ảnh chân dung chỉ dùng để hoàn thiện phần đầu riêng sau khi chốt mẫu." },
   { id: "04", text: "Phù hợp cho sinh nhật, kỷ niệm, cưới hỏi và quà doanh nghiệp." },
 ];
 
 const faqItems = [
   {
     q: "Khách cần chuẩn bị gì?",
-    a: "Chỉ cần chọn mẫu, để lại thông tin và gửi ảnh rõ mặt. Phần còn lại chúng tôi sẽ tư vấn cùng bạn.",
+    a: "Chỉ cần chọn mẫu và để lại thông tin. Nếu có ảnh sẵn, bạn có thể gửi ngay hoặc gửi sau đều được.",
   },
   {
     q: "Ảnh chân dung được dùng khi nào?",
-    a: "Ảnh được dùng sau bước chọn mẫu để hoàn thiện phần đầu theo phiên bản riêng của người nhận.",
+    a: "Ảnh được dùng sau bước chọn mẫu để hoàn thiện phần đầu riêng. Đây là tư liệu tham chiếu, không phải bước bắt buộc ngay từ đầu.",
   },
   {
     q: "Sau khi gửi yêu cầu thì sao?",
@@ -73,7 +73,7 @@ export default function HomePage() {
               </h1>
 
               <p className="mt-7 max-w-2xl text-base leading-8 text-stone-300 sm:text-lg">
-                Chọn mẫu phù hợp trước trên web. Phần đầu sẽ được cá nhân hoá riêng từ ảnh chân dung sau khi đội ngũ liên hệ tư vấn.
+                Chọn mẫu phù hợp trước trên web. Ảnh chân dung có thể gửi ngay hoặc gửi sau để đội ngũ hoàn thiện phần đầu theo phiên bản riêng.
               </p>
 
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -125,7 +125,7 @@ export default function HomePage() {
                       "Chọn dáng và size phù hợp.",
                       "Phối trang phục theo dịp tặng.",
                       "Thêm phụ kiện để tạo dấu ấn.",
-                      "Gửi ảnh để chuẩn bị phiên bản riêng.",
+                      "Gửi ảnh ngay hoặc gửi sau khi thuận tiện.",
                     ].map((item, index) => (
                       <div
                         key={item}
@@ -152,7 +152,7 @@ export default function HomePage() {
                       <div className="premium-card glass-panel-soft flex h-full min-h-[108px] flex-col rounded-[24px] p-4">
                         <p className="text-xs tracking-[0.18em] text-stone-500 uppercase">Cá nhân hoá</p>
                         <p className="mt-2 text-base font-semibold text-stone-100">
-                          Chọn mẫu {"->"} gửi ảnh {"->"} nhận tư vấn
+                          Chọn mẫu {"->"} gửi ảnh khi tiện {"->"} nhận tư vấn
                         </p>
                       </div>
                     </Reveal>
@@ -173,7 +173,7 @@ export default function HomePage() {
                 </h2>
               </div>
               <p className="max-w-xl text-base leading-8 text-stone-400">
-                Mọi thứ bắt đầu từ việc chọn mẫu trước. Sau đó đội ngũ sẽ liên hệ riêng để tư vấn và hoàn thiện phần cá nhân hoá.
+                Mọi thứ bắt đầu từ việc chọn mẫu trước. Ảnh chân dung có thể bổ sung ngay hoặc gửi sau khi đội ngũ liên hệ tư vấn.
               </p>
             </Reveal>
 
@@ -230,7 +230,7 @@ export default function HomePage() {
                   Chọn mẫu phù hợp, phần còn lại để chúng tôi đồng hành cùng bạn.
                 </h2>
                 <p className="relative mx-auto mt-5 max-w-2xl text-base leading-8 text-stone-300">
-                  Preview giúp bạn hình dung tổng thể trước. Sau khi gửi yêu cầu, đội ngũ sẽ liên hệ riêng để hoàn thiện phiên bản cá nhân hoá.
+                  Preview giúp bạn hình dung tổng thể trước. Sau khi gửi yêu cầu, đội ngũ sẽ liên hệ riêng và hoàn thiện phần đầu từ ảnh chân dung bạn gửi sau đó.
                 </p>
                 <div className="relative mt-8">
                   <Link

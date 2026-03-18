@@ -195,7 +195,7 @@ export function FigureConfigurator() {
                       Chọn phiên bản figure phù hợp với món quà của bạn.
                     </h1>
                     <p className="mt-4 max-w-2xl text-base leading-8 text-stone-300">
-                      Preview này giúp bạn hình dung tổng thể trước. Phần đầu sẽ được cá nhân hoá riêng từ ảnh chân dung sau khi đội ngũ liên hệ tư vấn.
+                      Preview này giúp bạn hình dung tổng thể trước. Phần đầu sẽ được hoàn thiện riêng từ ảnh chân dung sau khi đội ngũ liên hệ tư vấn.
                     </p>
                   </div>
 
@@ -292,13 +292,13 @@ export function FigureConfigurator() {
                   <div>
                     <h3 className="text-sm font-semibold tracking-[0.18em] text-[#ead3b4] uppercase">Ảnh chân dung</h3>
                     <p className="mt-3 text-sm leading-7 text-stone-300">
-                      Gửi ảnh rõ mặt để chúng tôi chuẩn bị phần đầu theo phiên bản riêng sau khi xác nhận mẫu.
+                      Ảnh chân dung dùng để cá nhân hoá phần đầu của figure. Bạn có thể gửi ngay tại đây hoặc gửi sau qua kênh liên hệ thuận tiện.
                     </p>
                   </div>
 
                   <div className="mt-5 grid gap-4 md:grid-cols-2">
                     <label className="space-y-2">
-                      <span className="text-sm text-stone-300">Tải ảnh lên</span>
+                      <span className="text-sm text-stone-300">Tải ảnh lên ngay</span>
                       <input
                         type="file"
                         accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
@@ -306,7 +306,7 @@ export function FigureConfigurator() {
                         className="block w-full rounded-[24px] border border-white/10 bg-white/4 px-4 py-3 text-sm text-stone-300 transition duration-300 file:mr-4 file:rounded-full file:border-0 file:bg-[#e9d2b7] file:px-4 file:py-2 file:text-sm file:font-medium file:text-stone-900 hover:bg-white/6"
                       />
                       <p className="text-xs text-stone-500">
-                        {imageFile ? `Đã chọn: ${imageFile.name}` : "Chưa có ảnh nào được chọn"}
+                        {imageFile ? `Đã chọn: ${imageFile.name}` : "Nếu chưa sẵn ảnh, bạn vẫn có thể gửi yêu cầu trước."}
                       </p>
                     </label>
 
@@ -319,9 +319,13 @@ export function FigureConfigurator() {
                         placeholder="https://..."
                         className={inputClassName}
                       />
-                      <p className="text-xs text-stone-500">Có thể dùng Google Drive, iCloud hoặc link ảnh trực tiếp.</p>
+                      <p className="text-xs text-stone-500">Bạn cũng có thể gửi sau qua Zalo, Facebook, Instagram hoặc TikTok.</p>
                     </label>
                   </div>
+
+                  <p className="mt-4 text-xs leading-6 text-stone-500">
+                    Chỉ cần một ảnh rõ mặt để đội ngũ tham chiếu khi hoàn thiện phần riêng sau bước xác nhận mẫu.
+                  </p>
                 </section>
 
                 <SummaryPanel config={config} />
@@ -423,7 +427,7 @@ export function FigureConfigurator() {
               <p className="text-xs tracking-[0.18em] text-stone-500 uppercase">Lưu ý</p>
               <ul className="mt-4 space-y-3 text-sm leading-7 text-stone-300">
                 <li>Preview hiện tại dùng để bạn hình dung tổng thể mẫu figure.</li>
-                <li>Phần đầu sẽ được cá nhân hoá riêng sau khi nhận ảnh chân dung.</li>
+                <li>Ảnh chân dung có thể gửi ngay tại đây hoặc gửi sau qua kênh liên hệ thuận tiện.</li>
                 <li>Sau khi gửi yêu cầu, đội ngũ sẽ liên hệ riêng để tư vấn và hoàn thiện phiên bản phù hợp.</li>
               </ul>
             </div>
