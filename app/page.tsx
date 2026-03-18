@@ -1,88 +1,140 @@
 import Link from "next/link";
 import { accessories, bodyBases, outfitThemes, sizeOptions } from "@/data/figure-options";
+import { Reveal } from "@/components/shared/reveal";
 import { SiteFooter } from "@/components/shared/site-footer";
 import { SiteHeader } from "@/components/shared/site-header";
 
+const processItems = [
+  {
+    step: "01",
+    title: "Chọn mẫu yêu thích",
+    text: "Chọn dáng, kích thước, phong cách và những điểm nhấn phù hợp với dịp tặng.",
+  },
+  {
+    step: "02",
+    title: "Gửi ảnh chân dung",
+    text: "Ảnh giúp chúng tôi tư vấn diện mạo và giữ lại thần thái riêng của người nhận.",
+  },
+  {
+    step: "03",
+    title: "Nhận tư vấn riêng",
+    text: "Chúng tôi xác nhận chi tiết, tinh chỉnh phối màu và chốt phương án thật gọn gàng.",
+  },
+  {
+    step: "04",
+    title: "Hoàn thiện món quà",
+    text: "Phiên bản cuối được hoàn thiện tinh tế để bạn sẵn sàng trao tặng trong những dịp đáng nhớ.",
+  },
+];
+
+const valueItems = [
+  "Bố cục rõ ràng để khách cảm nhận ngay sự chỉn chu và cao cấp.",
+  "Motion nhẹ, mượt và tiết chế để tạo cảm giác hiện đại.",
+  "Quy trình tư vấn gọn gàng, giúp ra quyết định nhanh hơn.",
+  "Phù hợp cho quà sinh nhật, kỷ niệm, cưới hỏi và quà doanh nghiệp.",
+];
+
+const faqItems = [
+  {
+    q: "Khách cần chuẩn bị gì?",
+    a: "Chỉ cần chọn mẫu, để lại thông tin và gửi ảnh rõ mặt. Phần còn lại chúng tôi sẽ tư vấn cùng bạn.",
+  },
+  {
+    q: "Ảnh chân dung dùng để làm gì?",
+    a: "Ảnh giúp việc cá nhân hoá diện mạo trở nên sát hơn, tinh tế hơn và giàu cảm xúc hơn.",
+  },
+  {
+    q: "Khi nào có báo giá?",
+    a: "Ngay sau khi nhận yêu cầu, chúng tôi xác nhận lựa chọn và gửi tư vấn kèm mức giá phù hợp.",
+  },
+];
+
 export default function HomePage() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-x-hidden">
       <SiteHeader />
 
-      <main>
-        <section className="relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(233,210,183,0.16),_transparent_25%),radial-gradient(circle_at_bottom_left,_rgba(167,115,84,0.16),_transparent_22%)]" />
-          <div className="relative mx-auto grid max-w-7xl gap-14 px-5 py-20 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-24">
-            <div className="max-w-3xl">
-              <span className="inline-flex rounded-full border border-[#d5b089]/25 bg-[rgba(233,210,183,0.08)] px-4 py-2 text-xs tracking-[0.22em] text-[#f1d3af] uppercase">
-                Quà tặng cá nhân hoá
-              </span>
-              <h1 className="font-display mt-6 text-5xl leading-[0.94] font-semibold tracking-tight text-stone-50 sm:text-6xl lg:text-7xl">
-                Tạo nên món quà
-                <span className="block text-[#ebc89a]">mang dấu ấn riêng</span>
-                thật tinh tế.
+      <main className="relative">
+        <div className="hero-orb left-[-12rem] top-20 h-[26rem] w-[26rem] bg-[#c98e6d]/20" />
+        <div className="hero-orb right-[-9rem] top-32 h-[22rem] w-[22rem] bg-[#99a7ff]/10" />
+
+        <section className="relative px-5 pb-12 pt-10 sm:px-6 lg:px-8 lg:pb-16 lg:pt-14">
+          <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+            <Reveal className="max-w-3xl">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/6 px-4 py-2 text-[11px] tracking-[0.24em] text-[#f0dbc0] uppercase">
+                <span className="h-2 w-2 rounded-full bg-[#f0dbc0]" />
+                Figure Atelier
+              </div>
+
+              <h1 className="font-display mt-7 max-w-4xl text-5xl leading-[0.9] font-semibold tracking-[-0.03em] text-white sm:text-6xl lg:text-7xl">
+                Quà tặng
+                <span className="block text-[#ecd6b7]">mang dấu ấn riêng</span>
+                với cảm giác thật cao cấp.
               </h1>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-stone-300">
-                Chọn mẫu, gửi ảnh và để chúng tôi cùng bạn hoàn thiện một phiên bản dành riêng cho người nhận.
-                Mọi thứ rõ ràng, nhanh gọn và đủ cảm xúc để chốt quà ngay từ lần xem đầu tiên.
+
+              <p className="mt-7 max-w-2xl text-base leading-8 text-stone-300 sm:text-lg">
+                Một trải nghiệm chọn mẫu tinh gọn, hiện đại và đủ tinh tế để khách muốn ở lại lâu hơn. Mọi thứ được trình bày rõ ràng để việc chọn quà trở nên nhẹ nhàng và sang hơn.
               </p>
 
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
                 <Link
                   href="/design"
-                  className="rounded-full bg-[#e9d2b7] px-7 py-4 text-center text-sm font-semibold text-stone-950 transition hover:bg-[#f7e4ce]"
+                  className="premium-button inline-flex items-center justify-center rounded-full border border-[#f0d9b9]/30 bg-[#ebd7bd] px-7 py-4 text-sm font-semibold text-stone-950 shadow-[0_14px_40px_rgba(244,220,192,0.12)]"
                 >
                   Bắt đầu chọn mẫu
                 </Link>
                 <a
                   href="#quy-trinh"
-                  className="rounded-full border border-white/12 px-7 py-4 text-center text-sm font-semibold text-stone-100 transition hover:bg-white/6"
+                  className="premium-button inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-7 py-4 text-sm font-semibold text-stone-100"
                 >
                   Xem quy trình
                 </a>
               </div>
 
-              <div className="mt-12 grid gap-4 sm:grid-cols-3">
+              <div className="mt-10 grid gap-4 sm:grid-cols-3">
                 {[
                   { label: "Dáng mẫu", value: `${bodyBases.length}+ lựa chọn sẵn` },
                   { label: "Phong cách", value: `${outfitThemes.length} chủ đề nổi bật` },
                   { label: "Điểm nhấn", value: `${accessories.length} phụ kiện để chọn` },
-                ].map((item) => (
-                  <div
-                    key={item.label}
-                    className="rounded-[28px] border border-white/10 bg-[rgba(255,255,255,0.05)] p-5 shadow-[0_18px_40px_rgba(0,0,0,0.18)]"
-                  >
-                    <p className="text-sm text-stone-400">{item.label}</p>
-                    <p className="mt-2 text-xl font-semibold text-stone-100">{item.value}</p>
-                  </div>
+                ].map((item, index) => (
+                  <Reveal key={item.label} delayMs={index * 80}>
+                    <div className="premium-card glass-panel-soft rounded-[28px] p-5">
+                      <p className="text-sm text-stone-400">{item.label}</p>
+                      <p className="mt-2 text-xl font-semibold text-stone-100">{item.value}</p>
+                    </div>
+                  </Reveal>
                 ))}
               </div>
-            </div>
+            </Reveal>
 
-            <div className="lg:pl-8">
-              <div className="rounded-[36px] border border-white/10 bg-[linear-gradient(180deg,_rgba(255,255,255,0.06),_rgba(255,255,255,0.03))] p-5 shadow-[0_30px_100px_rgba(0,0,0,0.28)]">
-                <div className="rounded-[30px] border border-white/10 bg-[#181310] p-6">
-                  <div className="flex items-center justify-between">
+            <Reveal delayMs={100}>
+              <div className="glass-panel hairline relative overflow-hidden rounded-[36px] p-4 sm:p-5">
+                <div className="absolute inset-x-12 top-0 h-32 rounded-full bg-[#f0dbc0]/10 blur-3xl" />
+                <div className="relative rounded-[30px] border border-white/8 bg-[linear-gradient(180deg,rgba(14,15,20,0.96),rgba(17,18,24,0.86))] p-5 sm:p-6">
+                  <div className="flex items-start justify-between gap-4">
                     <div>
-                      <p className="text-xs tracking-[0.18em] text-stone-500 uppercase">Trải nghiệm đặt riêng</p>
-                      <h2 className="mt-2 text-2xl font-semibold text-white">Quy trình quà tặng cao cấp</h2>
+                      <p className="text-xs tracking-[0.22em] text-stone-500 uppercase">Premium experience</p>
+                      <h2 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">
+                        Một hành trình đặt quà mượt mà và tinh tế.
+                      </h2>
                     </div>
-                    <span className="rounded-full border border-[#e9d2b7]/30 bg-[rgba(233,210,183,0.12)] px-4 py-2 text-xs tracking-[0.14em] text-[#f1d3af] uppercase">
-                      Tư vấn nhanh
+                    <span className="rounded-full border border-[#f0dbc0]/20 bg-[#f0dbc0]/10 px-4 py-2 text-[11px] tracking-[0.18em] text-[#f2dec5] uppercase">
+                      Calm motion
                     </span>
                   </div>
 
-                  <div className="mt-6 grid gap-4">
+                  <div className="mt-8 grid gap-3">
                     {[
-                      "Chọn mẫu và kích thước phù hợp",
-                      "Phối phong cách theo dịp tặng",
-                      "Thêm phụ kiện và đế trưng bày",
-                      "Gửi ảnh để cá nhân hoá gương mặt",
+                      "Chọn dáng và kích thước phù hợp.",
+                      "Phối phong cách theo dịp tặng.",
+                      "Thêm phụ kiện để tạo dấu ấn.",
+                      "Gửi ảnh để cá nhân hoá gương mặt.",
                     ].map((item, index) => (
                       <div
                         key={item}
-                        className="flex items-center gap-4 rounded-[24px] border border-white/8 bg-white/4 p-4"
+                        className="premium-card flex items-center gap-4 rounded-[24px] border border-white/8 bg-white/4 p-4"
                       >
-                        <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[rgba(233,210,183,0.14)] text-sm font-semibold text-[#f1d3af]">
+                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#f0dbc0]/10 text-sm font-semibold text-[#f2dec5]">
                           0{index + 1}
                         </div>
                         <p className="text-sm leading-6 text-stone-300">{item}</p>
@@ -90,143 +142,125 @@ export default function HomePage() {
                     ))}
                   </div>
 
-                  <div className="mt-6 rounded-[26px] border border-white/8 bg-[radial-gradient(circle_at_top,_rgba(233,210,183,0.18),_transparent_42%),linear-gradient(180deg,_rgba(255,255,255,0.05),_rgba(255,255,255,0.02))] p-5">
-                    <div className="grid gap-3 sm:grid-cols-2">
-                      <div className="rounded-[22px] border border-white/8 bg-black/10 p-4">
-                        <p className="text-xs tracking-[0.16em] text-stone-500 uppercase">Kích thước</p>
-                        <p className="mt-2 text-base font-semibold text-stone-100">
-                          {sizeOptions.map((item) => item.id).join(" / ")}
-                        </p>
-                      </div>
-                      <div className="rounded-[22px] border border-white/8 bg-black/10 p-4">
-                        <p className="text-xs tracking-[0.16em] text-stone-500 uppercase">Cá nhân hoá</p>
-                        <p className="mt-2 text-base font-semibold text-stone-100">
-                          Gửi ảnh {"->"} duyệt phong cách {"->"} hoàn thiện
-                        </p>
-                      </div>
+                  <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                    <div className="glass-panel-soft rounded-[24px] p-4">
+                      <p className="text-xs tracking-[0.18em] text-stone-500 uppercase">Kích thước</p>
+                      <p className="mt-2 text-base font-semibold text-stone-100">
+                        {sizeOptions.map((item) => item.id).join(" / ")}
+                      </p>
+                    </div>
+                    <div className="glass-panel-soft rounded-[24px] p-4">
+                      <p className="text-xs tracking-[0.18em] text-stone-500 uppercase">Cá nhân hoá</p>
+                      <p className="mt-2 text-base font-semibold text-stone-100">
+                        Gửi ảnh {"->"} duyệt phong cách {"->"} hoàn thiện
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </Reveal>
           </div>
         </section>
 
-        <section id="quy-trinh" className="scroll-mt-24 mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8 lg:py-16">
-          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <div className="max-w-2xl">
-              <p className="text-sm tracking-[0.22em] text-[#e3bb8d] uppercase">Quy trình</p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-                Từ ý tưởng đến món quà hoàn chỉnh.
-              </h2>
-            </div>
-            <p className="max-w-xl text-base leading-7 text-stone-400">
-              Mỗi bước đều được thiết kế để khách dễ chọn, dễ gửi yêu cầu và dễ đi tới quyết định.
-            </p>
-          </div>
-
-          <div className="mt-10 grid gap-4 lg:grid-cols-4">
-            {[
-              {
-                title: "Chọn mẫu yêu thích",
-                text: "Chọn dáng, kích thước, phong cách và phụ kiện phù hợp với dịp tặng.",
-              },
-              {
-                title: "Gửi ảnh chân dung",
-                text: "Ảnh giúp chúng tôi tư vấn diện mạo và tinh chỉnh phiên bản dành riêng cho bạn.",
-              },
-              {
-                title: "Nhận tư vấn riêng",
-                text: "Đội ngũ xác nhận chi tiết, gợi ý phối màu và chốt phương án phù hợp ngân sách.",
-              },
-              {
-                title: "Hoàn thiện món quà",
-                text: "Sau khi thống nhất, chúng tôi hoàn thiện phiên bản cuối để bạn sẵn sàng trao tặng.",
-              },
-            ].map((item, index) => (
-              <article
-                key={item.title}
-                className="rounded-[30px] border border-white/10 bg-[rgba(255,255,255,0.05)] p-6"
-              >
-                <p className="text-xs tracking-[0.18em] text-stone-500 uppercase">Bước 0{index + 1}</p>
-                <h3 className="mt-3 text-xl font-semibold text-stone-100">{item.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-stone-400">{item.text}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section id="gia-tri" className="scroll-mt-24 mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8 lg:py-16">
-          <div className="grid gap-6 lg:grid-cols-[0.86fr_1.14fr]">
-            <div className="rounded-[34px] border border-white/10 bg-[rgba(255,255,255,0.04)] p-7">
-              <p className="text-sm tracking-[0.22em] text-[#e3bb8d] uppercase">Giá trị</p>
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white">
-                Tinh tế để tạo thiện cảm, rõ ràng để khách dễ chọn.
-              </h2>
-              <p className="mt-4 text-base leading-7 text-stone-400">
-                Giao diện ưu tiên cảm giác sang trọng, dễ hiểu và giàu cảm xúc. Khách nhìn vào sẽ thấy đây là một món quà được chăm chút, không phải một bản giới thiệu khô cứng.
+        <section id="quy-trinh" className="scroll-mt-28 px-5 py-12 sm:px-6 lg:px-8 lg:py-18">
+          <div className="mx-auto max-w-7xl">
+            <Reveal className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+              <div className="max-w-2xl">
+                <p className="text-sm tracking-[0.22em] text-[#ebd6ba] uppercase">Quy trình</p>
+                <h2 className="mt-3 text-4xl font-semibold tracking-[-0.03em] text-white sm:text-5xl">
+                  Từ lựa chọn đầu tiên đến món quà hoàn chỉnh.
+                </h2>
+              </div>
+              <p className="max-w-xl text-base leading-8 text-stone-400">
+                Mỗi bước đều được sắp xếp rõ ràng để khách dễ hình dung, dễ ra quyết định và luôn cảm thấy được chăm chút.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="grid gap-4 md:grid-cols-2">
-              {[
-                "Khách có thể hình dung món quà ngay khi vừa chọn xong phong cách.",
-                "Mỗi lựa chọn đều ngắn gọn, trực quan và dễ quyết định.",
-                "Ảnh chân dung được đưa vào quy trình tư vấn để thành phẩm mang dấu ấn riêng.",
-                "Phù hợp cho quà sinh nhật, kỷ niệm, tốt nghiệp, cưới hỏi và quà doanh nghiệp.",
-              ].map((item) => (
-                <div
-                  key={item}
-                  className="rounded-[28px] border border-white/10 bg-[linear-gradient(180deg,_rgba(255,255,255,0.05),_rgba(255,255,255,0.02))] p-6 text-sm leading-7 text-stone-300"
-                >
-                  {item}
-                </div>
+            <div className="mt-10 grid gap-4 lg:grid-cols-4">
+              {processItems.map((item, index) => (
+                <Reveal key={item.title} delayMs={index * 90}>
+                  <article className="premium-card glass-panel-soft rounded-[30px] p-6">
+                    <p className="text-xs tracking-[0.2em] text-stone-500 uppercase">{item.step}</p>
+                    <h3 className="mt-4 text-xl font-semibold text-stone-100">{item.title}</h3>
+                    <p className="mt-3 text-sm leading-7 text-stone-400">{item.text}</p>
+                  </article>
+                </Reveal>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8 lg:py-16">
-          <div className="rounded-[40px] border border-[#e0b98d]/20 bg-[radial-gradient(circle_at_top_left,_rgba(233,210,183,0.18),_transparent_26%),linear-gradient(180deg,_rgba(255,255,255,0.06),_rgba(255,255,255,0.03))] px-6 py-10 text-center sm:px-10">
-            <p className="text-sm tracking-[0.22em] text-[#f1d3af] uppercase">Sẵn sàng bắt đầu</p>
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-              Chọn mẫu trước, phần còn lại để chúng tôi đồng hành cùng bạn.
-            </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-stone-300">
-              Một trải nghiệm ngắn gọn để khách chọn nhanh, gửi yêu cầu dễ và cảm nhận rõ giá trị món quà.
-            </p>
-            <div className="mt-8">
-              <Link
-                href="/design"
-                className="inline-flex rounded-full bg-[#ead1b2] px-7 py-4 text-sm font-semibold text-stone-950 transition hover:bg-[#f7e4ce]"
-              >
-                Mở khu vực chọn mẫu
-              </Link>
+        <section id="gia-tri" className="scroll-mt-28 px-5 py-12 sm:px-6 lg:px-8 lg:py-18">
+          <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+            <Reveal>
+              <div className="glass-panel hairline rounded-[34px] p-7 sm:p-8">
+                <p className="text-sm tracking-[0.22em] text-[#ebd6ba] uppercase">Giá trị</p>
+                <h2 className="mt-4 text-4xl font-semibold tracking-[-0.03em] text-white sm:text-5xl">
+                  Tinh tế, bình tĩnh và đủ sang để tạo thiện cảm ngay.
+                </h2>
+                <p className="mt-5 text-base leading-8 text-stone-400">
+                  Giao diện được làm lại theo tinh thần tối giản cao cấp: khoảng trắng thoáng, typography rõ, chuyển động mềm và bề mặt kính mờ vừa đủ để tạo cảm giác hiện đại.
+                </p>
+              </div>
+            </Reveal>
+
+            <div className="grid gap-4 md:grid-cols-2">
+              {valueItems.map((item, index) => (
+                <Reveal key={item} delayMs={index * 80}>
+                  <div className="premium-card glass-panel-soft rounded-[30px] p-6">
+                    <div className="mb-5 h-10 w-10 rounded-2xl bg-[#ecd7ba]/10 ring-1 ring-[#ecd7ba]/12" />
+                    <p className="text-sm leading-7 text-stone-300">{item}</p>
+                  </div>
+                </Reveal>
+              ))}
             </div>
           </div>
         </section>
 
-        <section id="faq" className="scroll-mt-24 mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8 lg:py-16">
-          <div className="grid gap-4 md:grid-cols-3">
-            {[
-              {
-                q: "Khách cần chuẩn bị gì?",
-                a: "Chỉ cần chọn mẫu, để lại thông tin và gửi ảnh rõ mặt. Chúng tôi sẽ tư vấn phần còn lại.",
-              },
-              {
-                q: "Ảnh chân dung dùng để làm gì?",
-                a: "Ảnh được dùng để tư vấn và cá nhân hoá gương mặt, giúp thành phẩm gần với người thật hơn.",
-              },
-              {
-                q: "Khi nào có báo giá?",
-                a: "Sau khi nhận yêu cầu, chúng tôi xác nhận lựa chọn và gửi tư vấn kèm mức giá phù hợp.",
-              },
-            ].map((item) => (
-              <article key={item.q} className="rounded-[28px] border border-white/10 bg-[rgba(255,255,255,0.04)] p-6">
-                <h3 className="text-lg font-semibold text-stone-100">{item.q}</h3>
-                <p className="mt-3 text-sm leading-7 text-stone-400">{item.a}</p>
-              </article>
-            ))}
+        <section className="px-5 py-12 sm:px-6 lg:px-8 lg:py-18">
+          <div className="mx-auto max-w-7xl">
+            <Reveal>
+              <div className="glass-panel relative overflow-hidden rounded-[40px] px-6 py-10 text-center sm:px-10 sm:py-14">
+                <div className="absolute left-1/2 top-0 h-40 w-40 -translate-x-1/2 rounded-full bg-[#f1dec4]/10 blur-3xl" />
+                <p className="relative text-sm tracking-[0.22em] text-[#f1dcbc] uppercase">Sẵn sàng bắt đầu</p>
+                <h2 className="relative mt-4 text-4xl font-semibold tracking-[-0.03em] text-white sm:text-5xl">
+                  Chọn mẫu trước, phần còn lại để chúng tôi đồng hành cùng bạn.
+                </h2>
+                <p className="relative mx-auto mt-5 max-w-2xl text-base leading-8 text-stone-300">
+                  Một trải nghiệm gọn gàng và mượt mà để khách chọn nhanh, cảm thấy yên tâm và muốn đi tiếp tới bước tư vấn.
+                </p>
+                <div className="relative mt-8">
+                  <Link
+                    href="/design"
+                    className="premium-button inline-flex rounded-full border border-[#f0d9b9]/30 bg-[#ebd7bd] px-7 py-4 text-sm font-semibold text-stone-950"
+                  >
+                    Mở khu vực chọn mẫu
+                  </Link>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        <section id="faq" className="scroll-mt-28 px-5 py-12 sm:px-6 lg:px-8 lg:pb-20 lg:pt-18">
+          <div className="mx-auto max-w-7xl">
+            <Reveal className="max-w-2xl">
+              <p className="text-sm tracking-[0.22em] text-[#ebd6ba] uppercase">FAQ</p>
+              <h2 className="mt-3 text-4xl font-semibold tracking-[-0.03em] text-white sm:text-5xl">
+                Mọi thứ cần biết, được trình bày thật gọn.
+              </h2>
+            </Reveal>
+
+            <div className="mt-10 grid gap-4 md:grid-cols-3">
+              {faqItems.map((item, index) => (
+                <Reveal key={item.q} delayMs={index * 80}>
+                  <article className="premium-card glass-panel-soft rounded-[30px] p-6">
+                    <h3 className="text-lg font-semibold text-stone-100">{item.q}</h3>
+                    <p className="mt-4 text-sm leading-7 text-stone-400">{item.a}</p>
+                  </article>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </section>
       </main>

@@ -14,7 +14,7 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://figure-atelier-demo.vercel.app"),
+  metadataBase: new URL("https://figure1.vercel.app"),
   title: {
     default: "Figure Atelier | Quà tặng figure cá nhân hoá",
     template: "%s | Figure Atelier",
@@ -32,6 +32,7 @@ export const metadata: Metadata = {
     title: "Figure Atelier",
     description: "Một trải nghiệm chọn mẫu tinh gọn cho figure cá nhân hoá mang dấu ấn riêng.",
     type: "website",
+    url: "https://figure1.vercel.app",
   },
   twitter: {
     card: "summary_large_image",
@@ -47,7 +48,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi">
-      <body className={`${manrope.variable} ${cormorant.variable} bg-[#120f0d] text-stone-50 antialiased`}>
+      <body className={`${manrope.variable} ${cormorant.variable} bg-[#0b0b0f] text-stone-50 antialiased`}>
         {children}
       </body>
     </html>
