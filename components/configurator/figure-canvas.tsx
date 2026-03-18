@@ -8,7 +8,6 @@ import type { FigureConfig } from "@/types/figure";
 
 type FigureCanvasProps = {
   config: FigureConfig;
-  focusMode?: boolean;
 };
 
 function FigureModel({ config }: FigureCanvasProps) {
@@ -116,13 +115,13 @@ function FigureModel({ config }: FigureCanvasProps) {
   );
 }
 
-export function FigureCanvas({ config, focusMode = false }: FigureCanvasProps) {
+export function FigureCanvas({ config }: FigureCanvasProps) {
   return (
     <Canvas
       shadows
-      camera={{ position: focusMode ? [0, 1.1, 4.6] : [0, 1.1, 4.9], fov: focusMode ? 31 : 34 }}
-      dpr={focusMode ? [1, 2] : [1, 1.6]}
-      className="h-full w-full touch-none"
+      camera={{ position: [0, 1.1, 4.9], fov: 34 }}
+      dpr={[1, 1.6]}
+      className="h-[520px] w-full"
       style={{ touchAction: "none" }}
     >
       <color attach="background" args={["#121318"]} />
@@ -145,12 +144,12 @@ export function FigureCanvas({ config, focusMode = false }: FigureCanvasProps) {
         <meshBasicMaterial color="#ffffff" transparent opacity={0.035} />
       </mesh>
 
-      <FigureModel config={config} focusMode={focusMode} />
+      <FigureModel config={config} />
 
       <ContactShadows
         position={[0, -1.38, 0]}
         opacity={0.32}
-        scale={focusMode ? 7 : 6}
+        scale={6}
         blur={2.4}
         far={4}
         resolution={512}
@@ -158,19 +157,14 @@ export function FigureCanvas({ config, focusMode = false }: FigureCanvasProps) {
       />
 
       <OrbitControls
-        enablePan
-        enableRotate
-        enableZoom
+        enablePan={false}
         enableDamping
         dampingFactor={0.08}
-        rotateSpeed={0.9}
-        zoomSpeed={0.92}
-        panSpeed={0.78}
-        minDistance={focusMode ? 3.4 : 4}
-        maxDistance={focusMode ? 10 : 8}
+        minDistance={4}
+        maxDistance={8}
         maxPolarAngle={Math.PI / 2.03}
         minPolarAngle={Math.PI / 3.4}
-        autoRotate={!focusMode}
+        autoRotate
         autoRotateSpeed={0.75}
       />
     </Canvas>
