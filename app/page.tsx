@@ -14,16 +14,16 @@ export default function HomePage() {
           <div className="relative mx-auto grid max-w-7xl gap-14 px-5 py-20 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-24">
             <div className="max-w-3xl">
               <span className="inline-flex rounded-full border border-[#d5b089]/25 bg-[rgba(233,210,183,0.08)] px-4 py-2 text-xs tracking-[0.22em] text-[#f1d3af] uppercase">
-                Demo website for custom figurine business
+                Quà tặng cá nhân hoá
               </span>
               <h1 className="font-display mt-6 text-5xl leading-[0.94] font-semibold tracking-tight text-stone-50 sm:text-6xl lg:text-7xl">
-                Thiết kế trước mô hình
-                <span className="block text-[#ebc89a]">3D cá nhân hóa</span>
-                theo phong cách premium.
+                Tạo nên món quà
+                <span className="block text-[#ebc89a]">mang dấu ấn riêng</span>
+                thật tinh tế.
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-stone-300">
-                Website demo giúp khách chọn body, outfit, phụ kiện và upload ảnh để bạn tư vấn
-                phần head custom riêng. Tối ưu cho giai đoạn test ý tưởng, thu lead và public free.
+                Chọn mẫu, gửi ảnh và để chúng tôi cùng bạn hoàn thiện một phiên bản dành riêng cho người nhận.
+                Mọi thứ rõ ràng, nhanh gọn và đủ cảm xúc để chốt quà ngay từ lần xem đầu tiên.
               </p>
 
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -31,21 +31,21 @@ export default function HomePage() {
                   href="/design"
                   className="rounded-full bg-[#e9d2b7] px-7 py-4 text-center text-sm font-semibold text-stone-950 transition hover:bg-[#f7e4ce]"
                 >
-                  Bắt đầu thiết kế figure
+                  Bắt đầu chọn mẫu
                 </Link>
                 <a
                   href="#how-it-works"
                   className="rounded-full border border-white/12 px-7 py-4 text-center text-sm font-semibold text-stone-100 transition hover:bg-white/6"
                 >
-                  Xem quy trình hoạt động
+                  Xem quy trình
                 </a>
               </div>
 
               <div className="mt-12 grid gap-4 sm:grid-cols-3">
                 {[
-                  { label: "Body base", value: `${bodyBases.length}+ mẫu dựng sẵn` },
-                  { label: "Outfit theme", value: `${outfitThemes.length} concept cho MVP` },
-                  { label: "Accessory", value: `${accessories.length} phụ kiện để mix` },
+                  { label: "Dáng mẫu", value: `${bodyBases.length}+ lựa chọn sẵn` },
+                  { label: "Phong cách", value: `${outfitThemes.length} chủ đề nổi bật` },
+                  { label: "Điểm nhấn", value: `${accessories.length} phụ kiện để chọn` },
                 ].map((item) => (
                   <div
                     key={item.label}
@@ -63,20 +63,20 @@ export default function HomePage() {
                 <div className="rounded-[30px] border border-white/10 bg-[#181310] p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-xs tracking-[0.18em] text-stone-500 uppercase">Configurator snapshot</p>
-                      <h2 className="mt-2 text-2xl font-semibold text-white">Premium gifting flow</h2>
+                      <p className="text-xs tracking-[0.18em] text-stone-500 uppercase">Trải nghiệm đặt riêng</p>
+                      <h2 className="mt-2 text-2xl font-semibold text-white">Quy trình quà tặng cao cấp</h2>
                     </div>
                     <span className="rounded-full border border-[#e9d2b7]/30 bg-[rgba(233,210,183,0.12)] px-4 py-2 text-xs tracking-[0.14em] text-[#f1d3af] uppercase">
-                      MVP ready
+                      Tư vấn nhanh
                     </span>
                   </div>
 
                   <div className="mt-6 grid gap-4">
                     {[
-                      "Chọn body + size phù hợp ngân sách",
-                      "Phối outfit theo chủ đề quà tặng",
+                      "Chọn mẫu và kích thước phù hợp",
+                      "Phối phong cách theo dịp tặng",
                       "Thêm phụ kiện và đế trưng bày",
-                      "Upload ảnh để custom head sau khi chốt đơn",
+                      "Gửi ảnh để cá nhân hoá gương mặt",
                     ].map((item, index) => (
                       <div
                         key={item}
@@ -93,15 +93,15 @@ export default function HomePage() {
                   <div className="mt-6 rounded-[26px] border border-white/8 bg-[radial-gradient(circle_at_top,_rgba(233,210,183,0.18),_transparent_42%),linear-gradient(180deg,_rgba(255,255,255,0.05),_rgba(255,255,255,0.02))] p-5">
                     <div className="grid gap-3 sm:grid-cols-2">
                       <div className="rounded-[22px] border border-white/8 bg-black/10 p-4">
-                        <p className="text-xs tracking-[0.16em] text-stone-500 uppercase">Size ladder</p>
+                        <p className="text-xs tracking-[0.16em] text-stone-500 uppercase">Kích thước</p>
                         <p className="mt-2 text-base font-semibold text-stone-100">
                           {sizeOptions.map((item) => item.id).join(" / ")}
                         </p>
                       </div>
                       <div className="rounded-[22px] border border-white/8 bg-black/10 p-4">
-                        <p className="text-xs tracking-[0.16em] text-stone-500 uppercase">Head workflow</p>
+                        <p className="text-xs tracking-[0.16em] text-stone-500 uppercase">Cá nhân hoá</p>
                         <p className="mt-2 text-base font-semibold text-stone-100">
-                          Chụp ảnh {"->"} duyệt style {"->"} custom sau
+                          Gửi ảnh {"->"} duyệt phong cách {"->"} hoàn thiện
                         </p>
                       </div>
                     </div>
@@ -115,41 +115,40 @@ export default function HomePage() {
         <section id="how-it-works" className="mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8 lg:py-16">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
-              <p className="text-sm tracking-[0.22em] text-[#e3bb8d] uppercase">How it works</p>
+              <p className="text-sm tracking-[0.22em] text-[#e3bb8d] uppercase">Quy trình</p>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-                Từ demo online đến yêu cầu sản xuất thực tế.
+                Từ ý tưởng đến món quà hoàn chỉnh.
               </h2>
             </div>
             <p className="max-w-xl text-base leading-7 text-stone-400">
-              Luồng này đủ đẹp để dùng chào khách và đủ gọn để chạy free-tier. Sau này chỉ cần
-              thay asset 3D thật, kết nối database và pipeline sản xuất.
+              Mỗi bước đều được thiết kế để khách dễ chọn, dễ gửi yêu cầu và dễ đi tới quyết định.
             </p>
           </div>
 
           <div className="mt-10 grid gap-4 lg:grid-cols-4">
             {[
               {
-                title: "Khách chọn kiểu figure",
-                text: "Body, size, outfit, phụ kiện và đế được chọn trực tiếp trên configurator.",
+                title: "Chọn mẫu yêu thích",
+                text: "Chọn dáng, kích thước, phong cách và phụ kiện phù hợp với dịp tặng.",
               },
               {
-                title: "Upload ảnh chân dung",
-                text: "Ảnh được đính kèm để bạn custom phần head riêng sau khi khách xác nhận.",
+                title: "Gửi ảnh chân dung",
+                text: "Ảnh giúp chúng tôi tư vấn diện mạo và tinh chỉnh phiên bản dành riêng cho bạn.",
               },
               {
-                title: "Lead được ghi nhận",
-                text: "Yêu cầu được gửi về API nội bộ hoặc Supabase nếu bạn cấu hình biến môi trường.",
+                title: "Nhận tư vấn riêng",
+                text: "Đội ngũ xác nhận chi tiết, gợi ý phối màu và chốt phương án phù hợp ngân sách.",
               },
               {
-                title: "Chuyển sang đơn thật",
-                text: "Bạn báo giá cuối, chốt concept, thay preview mock bằng asset 3D production sau.",
+                title: "Hoàn thiện món quà",
+                text: "Sau khi thống nhất, chúng tôi hoàn thiện phiên bản cuối để bạn sẵn sàng trao tặng.",
               },
             ].map((item, index) => (
               <article
                 key={item.title}
                 className="rounded-[30px] border border-white/10 bg-[rgba(255,255,255,0.05)] p-6"
               >
-                <p className="text-xs tracking-[0.18em] text-stone-500 uppercase">Step 0{index + 1}</p>
+                <p className="text-xs tracking-[0.18em] text-stone-500 uppercase">Bước 0{index + 1}</p>
                 <h3 className="mt-3 text-xl font-semibold text-stone-100">{item.title}</h3>
                 <p className="mt-3 text-sm leading-7 text-stone-400">{item.text}</p>
               </article>
@@ -160,22 +159,21 @@ export default function HomePage() {
         <section id="why-us" className="mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8 lg:py-16">
           <div className="grid gap-6 lg:grid-cols-[0.86fr_1.14fr]">
             <div className="rounded-[34px] border border-white/10 bg-[rgba(255,255,255,0.04)] p-7">
-              <p className="text-sm tracking-[0.22em] text-[#e3bb8d] uppercase">Value proposition</p>
+              <p className="text-sm tracking-[0.22em] text-[#e3bb8d] uppercase">Giá trị</p>
               <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white">
-                Website mang chất startup premium nhưng vẫn phục vụ chốt đơn quà tặng rất rõ.
+                Tinh tế để tạo thiện cảm, rõ ràng để khách dễ chọn.
               </h2>
               <p className="mt-4 text-base leading-7 text-stone-400">
-                Giao diện được tối ưu cho trust, sự tinh tế và cảm giác sản phẩm có giá trị. Nó không
-                cố giả vờ là studio 3D phức tạp, mà cho khách thấy họ đang cá nhân hóa một món quà thật.
+                Giao diện ưu tiên cảm giác sang trọng, dễ hiểu và giàu cảm xúc. Khách nhìn vào sẽ thấy đây là một món quà được chăm chút, không phải một bản giới thiệu khô cứng.
               </p>
             </div>
 
             <div className="grid gap-4 md:grid-cols-2">
               {[
-                "Static-first nên deploy gần như miễn phí trên Vercel hoặc Cloudflare Pages.",
-                "Dữ liệu lựa chọn được tách thành object rõ ràng để bạn tự chỉnh sửa không cần chạm sâu vào code.",
-                "Preview mock 3D phản hồi theo lựa chọn giúp khách hình dung nhanh dù chưa có asset thật.",
-                "Kiến trúc đã chừa sẵn đường nâng cấp cho Supabase, model GLB/GLTF và hệ thống order thực tế.",
+                "Khách có thể hình dung món quà ngay khi vừa chọn xong phong cách.",
+                "Mỗi lựa chọn đều ngắn gọn, trực quan và dễ quyết định.",
+                "Ảnh chân dung được đưa vào quy trình tư vấn để thành phẩm mang dấu ấn riêng.",
+                "Phù hợp cho quà sinh nhật, kỷ niệm, tốt nghiệp, cưới hỏi và quà doanh nghiệp.",
               ].map((item) => (
                 <div
                   key={item}
@@ -190,20 +188,19 @@ export default function HomePage() {
 
         <section className="mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8 lg:py-16">
           <div className="rounded-[40px] border border-[#e0b98d]/20 bg-[radial-gradient(circle_at_top_left,_rgba(233,210,183,0.18),_transparent_26%),linear-gradient(180deg,_rgba(255,255,255,0.06),_rgba(255,255,255,0.03))] px-6 py-10 text-center sm:px-10">
-            <p className="text-sm tracking-[0.22em] text-[#f1d3af] uppercase">Ready to launch</p>
+            <p className="text-sm tracking-[0.22em] text-[#f1d3af] uppercase">Sẵn sàng bắt đầu</p>
             <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-              Đi thẳng vào bản demo configurator và bắt đầu thu lead.
+              Chọn mẫu trước, phần còn lại để chúng tôi đồng hành cùng bạn.
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-stone-300">
-              Đây là lõi MVP đủ dùng để public, chào khách, test ý tưởng và mở rộng dần thành hệ
-              thống đặt hàng thật.
+              Một trải nghiệm ngắn gọn để khách chọn nhanh, gửi yêu cầu dễ và cảm nhận rõ giá trị món quà.
             </p>
             <div className="mt-8">
               <Link
                 href="/design"
                 className="inline-flex rounded-full bg-[#ead1b2] px-7 py-4 text-sm font-semibold text-stone-950 transition hover:bg-[#f7e4ce]"
               >
-                Mở configurator
+                Mở khu vực chọn mẫu
               </Link>
             </div>
           </div>
@@ -213,16 +210,16 @@ export default function HomePage() {
           <div className="grid gap-4 md:grid-cols-3">
             {[
               {
-                q: "Preview 3D hiện đã là model thật chưa?",
-                a: "Chưa. MVP dùng primitive mock để thể hiện logic cấu hình. Bạn có thể thay bằng GLB/GLTF sau.",
+                q: "Khách cần chuẩn bị gì?",
+                a: "Chỉ cần chọn mẫu, để lại thông tin và gửi ảnh rõ mặt. Chúng tôi sẽ tư vấn phần còn lại.",
               },
               {
-                q: "Có cần backend riêng không?",
-                a: "Không bắt buộc. Với demo này, API route của Next.js là đủ. Khi cần lưu lead thật, cấu hình thêm Supabase free tier.",
+                q: "Ảnh chân dung dùng để làm gì?",
+                a: "Ảnh được dùng để tư vấn và cá nhân hoá gương mặt, giúp thành phẩm gần với người thật hơn.",
               },
               {
-                q: "Có thể chạy free-tier không?",
-                a: "Có. Stack hiện tại phù hợp để deploy miễn phí giai đoạn đầu trên Vercel hoặc Cloudflare Pages.",
+                q: "Khi nào có báo giá?",
+                a: "Sau khi nhận yêu cầu, chúng tôi xác nhận lựa chọn và gửi tư vấn kèm mức giá phù hợp.",
               },
             ].map((item) => (
               <article key={item.q} className="rounded-[28px] border border-white/10 bg-[rgba(255,255,255,0.04)] p-6">

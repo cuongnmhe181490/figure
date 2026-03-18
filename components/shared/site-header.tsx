@@ -12,7 +12,7 @@ export function SiteHeader() {
             <p className="text-sm font-semibold tracking-[0.18em] text-stone-100 uppercase">
               Figure Atelier
             </p>
-            <p className="text-xs text-stone-400">Personalized 3D figurines</p>
+            <p className="text-xs text-stone-400">Quà tặng cá nhân hoá</p>
           </div>
         </Link>
 
@@ -32,7 +32,7 @@ export function SiteHeader() {
           href="/design"
           className="rounded-full border border-[#caa57a]/40 bg-[#e9d2b7] px-5 py-2.5 text-sm font-medium text-stone-950 transition hover:bg-[#f5e4cf]"
         >
-          Bắt đầu thiết kế
+          Bắt đầu chọn mẫu
         </Link>
       </div>
     </header>

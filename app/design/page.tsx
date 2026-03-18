@@ -4,9 +4,8 @@ import { SiteFooter } from "@/components/shared/site-footer";
 import { SiteHeader } from "@/components/shared/site-header";
 
 export const metadata: Metadata = {
-  title: "Thiết kế figure",
-  description:
-    "Chọn body, size, outfit, phụ kiện và gửi yêu cầu custom figurine 3D cá nhân hóa.",
+  title: "Chọn mẫu figure",
+  description: "Chọn mẫu, phong cách, phụ kiện và gửi ảnh để nhận tư vấn cá nhân hoá.",
 };
 
 export default function DesignPage() {

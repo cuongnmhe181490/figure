@@ -16,17 +16,17 @@ export function SummaryPanel({ config }: SummaryPanelProps) {
     <section className="rounded-[30px] border border-white/10 bg-[rgba(255,255,255,0.04)] p-5">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <p className="text-xs tracking-[0.18em] text-stone-500 uppercase">Tóm tắt cấu hình</p>
-          <h3 className="mt-2 text-xl font-semibold text-stone-50">Phiên bản demo sẽ dùng để tư vấn</h3>
+          <p className="text-xs tracking-[0.18em] text-stone-500 uppercase">Tóm tắt lựa chọn</p>
+          <h3 className="mt-2 text-xl font-semibold text-stone-50">Phiên bản sẽ được dùng để tư vấn</h3>
         </div>
         <div className="rounded-full border border-[#e8c49a]/30 bg-[rgba(235,214,189,0.15)] px-4 py-2 text-sm font-medium text-[#f5ddbc]">
-          Giá dự kiến từ {formatCurrency(size.priceFrom)}
+          Giá tham khảo từ {formatCurrency(size.priceFrom)}
         </div>
       </div>
 
       <dl className="mt-6 grid gap-4 text-sm text-stone-300 md:grid-cols-2">
         <div className="rounded-[22px] border border-white/8 bg-black/10 p-4">
-          <dt className="text-stone-500">Body base</dt>
+          <dt className="text-stone-500">Dáng mẫu</dt>
           <dd className="mt-1 font-medium text-stone-100">{body.name}</dd>
         </div>
         <div className="rounded-[22px] border border-white/8 bg-black/10 p-4">
@@ -38,7 +38,7 @@ export function SummaryPanel({ config }: SummaryPanelProps) {
           <dd className="mt-1 font-medium text-stone-100">{outfit.name}</dd>
         </div>
         <div className="rounded-[22px] border border-white/8 bg-black/10 p-4">
-          <dt className="text-stone-500">Màu outfit</dt>
+          <dt className="text-stone-500">Màu sắc</dt>
           <dd className="mt-1 flex items-center gap-2 font-medium text-stone-100">
             <span className="h-4 w-4 rounded-full border border-white/10" style={{ backgroundColor: config.outfitColor }} />
             {config.outfitColor}

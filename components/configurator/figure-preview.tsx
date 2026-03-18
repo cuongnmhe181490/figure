@@ -10,7 +10,7 @@ const FigureCanvas = dynamic(
     ssr: false,
     loading: () => (
       <div className="flex h-full min-h-[420px] items-center justify-center rounded-[32px] border border-white/10 bg-[radial-gradient(circle_at_top,_rgba(233,210,183,0.18),_transparent_48%),linear-gradient(180deg,_rgba(255,255,255,0.06),_rgba(255,255,255,0.02))] text-sm text-stone-400">
-        Đang khởi tạo preview 3D...
+        Đang chuẩn bị bản xem trước...
       </div>
     ),
   },
@@ -32,11 +32,11 @@ export function FigurePreview({ config }: FigurePreviewProps) {
       <div className="rounded-[30px] border border-white/8 bg-[#16110f] p-3">
         <div className="mb-3 flex items-center justify-between px-2 pt-2">
           <div>
-            <p className="text-xs tracking-[0.18em] text-stone-500 uppercase">Preview mock</p>
-            <h3 className="text-lg font-semibold text-stone-100">Figure Config Live</h3>
+            <p className="text-xs tracking-[0.18em] text-stone-500 uppercase">Xem trước</p>
+            <h3 className="text-lg font-semibold text-stone-100">Phiên bản bạn đang chọn</h3>
           </div>
           <div className="rounded-full border border-white/10 px-3 py-1 text-xs text-stone-300">
-            Head custom từ ảnh sau khi đặt
+            Cá nhân hoá từ ảnh của bạn
           </div>
         </div>
         <div className="h-[420px] overflow-hidden rounded-[28px]">
@@ -59,7 +59,7 @@ export function FigurePreview({ config }: FigurePreviewProps) {
           </div>
         </div>
         <div className="rounded-[24px] border border-white/8 bg-white/4 p-4">
-          <p className="text-xs tracking-[0.18em] text-stone-500 uppercase">Accessories</p>
+          <p className="text-xs tracking-[0.18em] text-stone-500 uppercase">Phụ kiện</p>
           <p className="mt-2 font-semibold text-stone-100">
             {selectedAccessories.length > 0
               ? selectedAccessories.map((item) => item.name).join(", ")
@@ -67,7 +67,7 @@ export function FigurePreview({ config }: FigurePreviewProps) {
           </p>
         </div>
         <div className="rounded-[24px] border border-white/8 bg-white/4 p-4">
-          <p className="text-xs tracking-[0.18em] text-stone-500 uppercase">Display Base</p>
+          <p className="text-xs tracking-[0.18em] text-stone-500 uppercase">Đế trưng bày</p>
           <p className="mt-2 font-semibold text-stone-100">{base.name}</p>
           <p className="text-sm text-stone-400">{base.description}</p>
         </div>

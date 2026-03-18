@@ -16,11 +16,11 @@ const cormorant = Cormorant_Garamond({
 export const metadata: Metadata = {
   metadataBase: new URL("https://figure-atelier-demo.vercel.app"),
   title: {
-    default: "Figure Atelier | Demo custom figurine 3D cá nhân hóa",
+    default: "Figure Atelier | Quà tặng figure cá nhân hoá",
     template: "%s | Figure Atelier",
   },
   description:
-    "Website demo cho dịch vụ figurine 3D cá nhân hóa: chọn body, outfit, phụ kiện, tải ảnh custom head và gửi yêu cầu tư vấn nhanh.",
+    "Chọn mẫu, gửi ảnh và nhận tư vấn để hoàn thiện figure cá nhân hoá cho những dịp thật đặc biệt.",
   keywords: [
     "figurine 3d",
     "mô hình 3d cá nhân hóa",
@@ -30,15 +30,13 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Figure Atelier",
-    description:
-      "Demo configurator cho dịch vụ mô hình 3D cá nhân hóa, phù hợp để thu lead và public online.",
+    description: "Một trải nghiệm chọn mẫu tinh gọn cho figure cá nhân hoá mang dấu ấn riêng.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Figure Atelier",
-    description:
-      "Thiết kế trước figurine 3D cá nhân hóa, upload ảnh và gửi yêu cầu tư vấn chỉ trong vài bước.",
+    description: "Chọn mẫu, gửi ảnh và nhận tư vấn cho món quà cá nhân hoá chỉ trong vài bước.",
   },
 };
 

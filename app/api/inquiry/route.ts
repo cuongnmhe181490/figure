@@ -28,7 +28,7 @@ export async function POST(request: Request) {
       image_url: imageUrl,
       image_file_name: imageFile instanceof File ? imageFile.name : "",
       config,
-      source: "figure-demo-mvp",
+      source: "figure-atelier",
       created_at: new Date().toISOString(),
     };
 
@@ -42,7 +42,7 @@ export async function POST(request: Request) {
           return NextResponse.json(
             {
               success: false,
-              message: "Đã kết nối database nhưng không lưu được yêu cầu. Kiểm tra bảng figure_inquiries.",
+              message: "Chưa thể ghi nhận yêu cầu lúc này. Vui lòng thử lại sau ít phút.",
             },
             { status: 500 },
           );
@@ -55,7 +55,7 @@ export async function POST(request: Request) {
     return NextResponse.json({
       success: true,
       message:
-        "Yêu cầu đã được ghi nhận. Ảnh sẽ được dùng để custom phần head sau khi bạn xác nhận đơn.",
+        "Yêu cầu đã được ghi nhận. Chúng tôi sẽ dùng ảnh bạn gửi để tư vấn và cá nhân hoá phiên bản phù hợp.",
     });
   } catch (error) {
     console.error("Inquiry submit error", error);
