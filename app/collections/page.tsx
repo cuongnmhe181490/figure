@@ -34,7 +34,7 @@ export default function CollectionsPage() {
                   <p className="mt-4 max-w-xl text-sm leading-7 text-stone-300">{item.description}</p>
                   <div className="mt-8">
                     <Link
-                      href="/design"
+                      href={`/design?collection=${item.id}`}
                       className="premium-button inline-flex rounded-full border border-[#f0d9b9]/30 bg-[#ebd7bd] px-6 py-3 text-sm font-semibold text-stone-950"
                     >
                       Mở builder

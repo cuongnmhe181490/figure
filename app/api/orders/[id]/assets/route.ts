@@ -24,7 +24,7 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
       return NextResponse.json({ success: false, message: "Model cần ở định dạng .glb." }, { status: 400 });
     }
 
-    const url = await saveUpload(file.name, await file.arrayBuffer());
+    const url = await saveUpload(file.name, await file.arrayBuffer(), file.type);
 
     const order = await addOrderAsset(id, {
       kind: kind === "model" ? "model" : "preview",

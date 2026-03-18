@@ -11,25 +11,50 @@ type OrdersPayload = {
   orders: GiftOrder[];
 };
 
-async function ensureStore() {
-  await fs.mkdir(dataDir, { recursive: true });
-  await fs.mkdir(uploadDir, { recursive: true });
+declare global {
+  var __figureOrdersPayload: OrdersPayload | undefined;
+}
 
+function getMemoryPayload() {
+  if (!globalThis.__figureOrdersPayload) {
+    globalThis.__figureOrdersPayload = { orders: [] };
+  }
+
+  return globalThis.__figureOrdersPayload;
+}
+
+async function tryReadFilePayload(): Promise<OrdersPayload | null> {
   try {
-    await fs.access(ordersFile);
+    const raw = await fs.readFile(ordersFile, "utf8");
+    return JSON.parse(raw) as OrdersPayload;
   } catch {
-    await fs.writeFile(ordersFile, JSON.stringify({ orders: [] } satisfies OrdersPayload, null, 2), "utf8");
+    return null;
+  }
+}
+
+async function tryWriteFilePayload(payload: OrdersPayload) {
+  try {
+    await fs.mkdir(dataDir, { recursive: true });
+    await fs.writeFile(ordersFile, JSON.stringify(payload, null, 2), "utf8");
+    return true;
+  } catch {
+    return false;
   }
 }
 
 async function readPayload(): Promise<OrdersPayload> {
-  await ensureStore();
-  const raw = await fs.readFile(ordersFile, "utf8");
-  return JSON.parse(raw) as OrdersPayload;
+  const filePayload = await tryReadFilePayload();
+  if (filePayload) {
+    globalThis.__figureOrdersPayload = filePayload;
+    return filePayload;
+  }
+
+  return getMemoryPayload();
 }
 
 async function writePayload(payload: OrdersPayload) {
-  await fs.writeFile(ordersFile, JSON.stringify(payload, null, 2), "utf8");
+  globalThis.__figureOrdersPayload = payload;
+  await tryWriteFilePayload(payload);
 }
 
 function generateReviewToken() {
@@ -115,10 +140,16 @@ export async function addOrderFeedback(reviewToken: string, message: string) {
   return order;
 }
 
-export async function saveUpload(fileName: string, content: ArrayBuffer) {
-  await ensureStore();
+export async function saveUpload(fileName: string, content: ArrayBuffer, mimeType: string) {
   const safeName = `${Date.now()}-${fileName.replace(/[^a-zA-Z0-9._-]/g, "-")}`;
-  const filePath = path.join(uploadDir, safeName);
-  await fs.writeFile(filePath, Buffer.from(content));
-  return `/uploads/${safeName}`;
+
+  try {
+    await fs.mkdir(uploadDir, { recursive: true });
+    const filePath = path.join(uploadDir, safeName);
+    await fs.writeFile(filePath, Buffer.from(content));
+    return `/uploads/${safeName}`;
+  } catch {
+    const base64 = Buffer.from(content).toString("base64");
+    return `data:${mimeType || "application/octet-stream"};base64,${base64}`;
+  }
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import {
   accessories,
@@ -12,6 +13,7 @@ import {
   sizeOptions,
   stepLabels,
 } from "@/data/figure-options";
+import { collectionItems, collectionPresetMap, isCollectionId } from "@/data/collections";
 import { ColorSwatchGroup } from "@/components/configurator/color-swatch-group";
 import { FigurePreview } from "@/components/configurator/figure-preview";
 import { MultiSelectGroup } from "@/components/configurator/multi-select-group";
@@ -32,6 +34,7 @@ const inputClassName =
   "w-full rounded-[24px] border border-white/10 bg-white/4 px-4 py-3 text-sm text-stone-100 outline-none transition duration-300 placeholder:text-stone-500 focus:border-[#ead3b4]/45 focus:bg-white/6";
 
 export function FigureConfigurator() {
+  const searchParams = useSearchParams();
   const [config, setConfig] = useState<FigureConfig>(defaultConfig);
   const [customerName, setCustomerName] = useState("");
   const [email, setEmail] = useState("");
@@ -65,6 +68,21 @@ export function FigureConfigurator() {
   useEffect(() => {
     window.localStorage.setItem(builderStorageKey, JSON.stringify(config));
   }, [config]);
+
+  useEffect(() => {
+    const collection = searchParams.get("collection");
+    if (!collection || !isCollectionId(collection)) return;
+
+    const preset = collectionPresetMap[collection];
+    setConfig(preset);
+    window.localStorage.setItem(builderStorageKey, JSON.stringify(preset));
+  }, [searchParams]);
+
+  const activeCollection = useMemo(() => {
+    const collection = searchParams.get("collection");
+    if (!collection || !isCollectionId(collection)) return null;
+    return collectionItems.find((item) => item.id === collection) ?? null;
+  }, [searchParams]);
 
   const handleThemeChange = (themeId: OutfitThemeId) => {
     const nextTheme = outfitThemes.find((theme) => theme.id === themeId) ?? outfitThemes[0];
@@ -166,6 +184,11 @@ export function FigureConfigurator() {
                       {step}
                     </span>
                   ))}
+                  {activeCollection ? (
+                    <span className="rounded-full border border-[#ead3b4]/20 bg-[#ead3b4]/10 px-3 py-1 text-xs tracking-[0.16em] text-[#f2dec5] uppercase">
+                      Preset {activeCollection.category}
+                    </span>
+                  ) : null}
                 </div>
 
                 <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
