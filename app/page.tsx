@@ -192,9 +192,9 @@ export default function HomePage() {
         </section>
 
         <section id="gia-tri" className="scroll-mt-28 px-5 py-12 sm:px-6 lg:px-8 lg:py-18">
-          <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-            <Reveal delayMs={60}>
-              <div className="premium-card glass-panel hairline rounded-[34px] p-7 sm:p-8">
+          <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch">
+            <Reveal delayMs={60} className="h-full">
+              <div className="premium-card glass-panel hairline flex h-full flex-col rounded-[34px] p-7 sm:p-8">
                 <p className="text-sm tracking-[0.22em] text-[#ebd6ba] uppercase">Giá trị</p>
                 <h2 className="mt-4 text-4xl font-semibold tracking-[-0.03em] text-white sm:text-5xl">
                   Tinh tế để dễ chọn, rõ ràng để dễ chốt.
