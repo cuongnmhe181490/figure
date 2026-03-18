@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useMemo, useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
 import { formatCurrency, outfitThemes, sizeOptions } from "@/data/figure-options";
 import { orderStatusLabel, orderStatusTone } from "@/lib/order-presenter";
 import type { GiftOrder, OrderStatus } from "@/types/order";
@@ -21,6 +22,7 @@ const statusOptions: OrderStatus[] = [
 ];
 
 export function AdminDashboard({ initialOrders }: AdminDashboardProps) {
+  const router = useRouter();
   const [orders, setOrders] = useState(initialOrders);
   const [selectedId, setSelectedId] = useState(initialOrders[0]?.id ?? "");
   const [isPending, startTransition] = useTransition();
@@ -63,12 +65,29 @@ export function AdminDashboard({ initialOrders }: AdminDashboardProps) {
     });
   };
 
+  const handleLogout = async () => {
+    await fetch("/api/admin/logout", { method: "POST" });
+    router.push("/admin/login");
+    router.refresh();
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-5 py-10 sm:px-6 lg:px-8">
       <section className="grid gap-8 xl:grid-cols-[360px_minmax(0,1fr)]">
         <aside className="glass-panel hairline rounded-[34px] p-5">
-          <p className="text-sm tracking-[0.22em] text-[#ead3b4] uppercase">Admin dashboard</p>
-          <h1 className="mt-3 text-3xl font-semibold tracking-[-0.03em] text-white">Quản lý đơn và review</h1>
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="text-sm tracking-[0.22em] text-[#ead3b4] uppercase">Admin dashboard</p>
+              <h1 className="mt-3 text-3xl font-semibold tracking-[-0.03em] text-white">Quản lý đơn và review</h1>
+            </div>
+            <button
+              type="button"
+              onClick={() => void handleLogout()}
+              className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-stone-200 transition hover:bg-white/8"
+            >
+              Đăng xuất
+            </button>
+          </div>
           <p className="mt-3 text-sm leading-7 text-stone-400">
             Xem đơn mới, đổi trạng thái, tải model GLB và ảnh preview cho từng khách hàng.
           </p>
