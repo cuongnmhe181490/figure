@@ -4,10 +4,15 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const navItems = [
+const sectionItems = [
   { id: "quy-trinh", label: "Quy trình" },
   { id: "gia-tri", label: "Giá trị" },
   { id: "faq", label: "FAQ" },
+];
+
+const pageItems = [
+  { href: "/collections", label: "Collections" },
+  { href: "/admin", label: "Admin" },
 ];
 
 export function SiteHeader() {
@@ -22,19 +27,12 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    const closeMenu = () => setIsMenuOpen(false);
-    window.addEventListener("resize", closeMenu);
-    return () => window.removeEventListener("resize", closeMenu);
-  }, []);
-
   const handleSectionNavigate = (sectionId: string) => {
     setIsMenuOpen(false);
 
     if (pathname === "/") {
       const section = document.getElementById(sectionId);
       if (!section) return;
-
       section.scrollIntoView({ behavior: "smooth", block: "start" });
       window.history.replaceState(null, "", `#${sectionId}`);
       return;
@@ -58,20 +56,34 @@ export function SiteHeader() {
           </div>
           <div>
             <p className="text-sm font-semibold tracking-[0.22em] text-stone-50 uppercase">Figure Atelier</p>
-            <p className="text-xs text-stone-400">Quà tặng cá nhân hoá</p>
+            <p className="text-xs text-stone-400">3D personalized gifts</p>
           </div>
         </Link>
 
         <nav className="hidden items-center gap-2 rounded-full border border-white/8 bg-white/5 p-1.5 md:flex">
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              type="button"
-              onClick={() => handleSectionNavigate(item.id)}
-              className="rounded-full px-4 py-2 text-sm text-stone-300 transition duration-300 hover:bg-white/8 hover:text-white"
+          {pathname === "/"
+            ? sectionItems.map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => handleSectionNavigate(item.id)}
+                  className="rounded-full px-4 py-2 text-sm text-stone-300 transition duration-300 hover:bg-white/8 hover:text-white"
+                >
+                  {item.label}
+                </button>
+              ))
+            : null}
+
+          {pageItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`rounded-full px-4 py-2 text-sm transition duration-300 hover:bg-white/8 hover:text-white ${
+                pathname === item.href ? "bg-white/8 text-white" : "text-stone-300"
+              }`}
             >
               {item.label}
-            </button>
+            </Link>
           ))}
         </nav>
 
@@ -91,13 +103,9 @@ export function SiteHeader() {
             aria-expanded={isMenuOpen}
           >
             <div className="flex w-4 flex-col gap-1.5">
-              <span
-                className={`block h-px bg-current transition duration-300 ${isMenuOpen ? "translate-y-[7px] rotate-45" : ""}`}
-              />
+              <span className={`block h-px bg-current transition duration-300 ${isMenuOpen ? "translate-y-[7px] rotate-45" : ""}`} />
               <span className={`block h-px bg-current transition duration-300 ${isMenuOpen ? "opacity-0" : ""}`} />
-              <span
-                className={`block h-px bg-current transition duration-300 ${isMenuOpen ? "-translate-y-[7px] -rotate-45" : ""}`}
-              />
+              <span className={`block h-px bg-current transition duration-300 ${isMenuOpen ? "-translate-y-[7px] -rotate-45" : ""}`} />
             </div>
           </button>
         </div>
@@ -105,20 +113,32 @@ export function SiteHeader() {
 
       <div
         className={`overflow-hidden border-t border-white/8 bg-[rgba(12,12,16,0.82)] backdrop-blur-2xl transition-all duration-300 md:hidden ${
-          isMenuOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
+          isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-4 sm:px-6">
-          {navItems.map((item, index) => (
-            <button
-              key={item.id}
-              type="button"
-              onClick={() => handleSectionNavigate(item.id)}
+          {pathname === "/"
+            ? sectionItems.map((item, index) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => handleSectionNavigate(item.id)}
+                  className="rounded-2xl border border-white/6 bg-white/4 px-4 py-3 text-left text-sm text-stone-200 transition duration-300 hover:bg-white/8"
+                  style={{ transitionDelay: `${index * 40}ms` }}
+                >
+                  {item.label}
+                </button>
+              ))
+            : null}
+          {pageItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={() => setIsMenuOpen(false)}
               className="rounded-2xl border border-white/6 bg-white/4 px-4 py-3 text-left text-sm text-stone-200 transition duration-300 hover:bg-white/8"
-              style={{ transitionDelay: `${index * 40}ms` }}
             >
               {item.label}
-            </button>
+            </Link>
           ))}
           <Link
             href="/design"

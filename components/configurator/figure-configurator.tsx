@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import Link from "next/link";
+import { useEffect, useMemo, useState } from "react";
 import {
   accessories,
   baseStyles,
@@ -22,17 +23,19 @@ import type { AccessoryId, FigureConfig, OutfitThemeId } from "@/types/figure";
 type SubmitStatus =
   | { type: "idle" }
   | { type: "loading" }
-  | { type: "success"; message: string }
+  | { type: "success"; message: string; reviewUrl: string }
   | { type: "error"; message: string };
 
 const maxAccessoryCount = 3;
+const builderStorageKey = "figure-atelier-builder-config";
 const inputClassName =
   "w-full rounded-[24px] border border-white/10 bg-white/4 px-4 py-3 text-sm text-stone-100 outline-none transition duration-300 placeholder:text-stone-500 focus:border-[#ead3b4]/45 focus:bg-white/6";
 
 export function FigureConfigurator() {
   const [config, setConfig] = useState<FigureConfig>(defaultConfig);
   const [customerName, setCustomerName] = useState("");
-  const [contact, setContact] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [note, setNote] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -46,6 +49,22 @@ export function FigureConfigurator() {
     () => sizeOptions.find((size) => size.id === config.size) ?? sizeOptions[1],
     [config.size],
   );
+
+  useEffect(() => {
+    try {
+      const saved = window.localStorage.getItem(builderStorageKey);
+      if (!saved) return;
+
+      const parsed = JSON.parse(saved) as Partial<FigureConfig>;
+      setConfig((current) => ({ ...current, ...parsed }));
+    } catch {
+      window.localStorage.removeItem(builderStorageKey);
+    }
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem(builderStorageKey, JSON.stringify(config));
+  }, [config]);
 
   const handleThemeChange = (themeId: OutfitThemeId) => {
     const nextTheme = outfitThemes.find((theme) => theme.id === themeId) ?? outfitThemes[0];
@@ -87,7 +106,8 @@ export function FigureConfigurator() {
     try {
       const formData = new FormData();
       formData.append("customerName", customerName);
-      formData.append("contact", contact);
+      formData.append("email", email);
+      formData.append("phone", phone);
       formData.append("note", note);
       formData.append("imageUrl", imageUrl);
       formData.append("config", JSON.stringify(config));
@@ -96,23 +116,29 @@ export function FigureConfigurator() {
         formData.append("imageFile", imageFile);
       }
 
-      const response = await fetch("/api/inquiry", {
+      const response = await fetch("/api/orders", {
         method: "POST",
         body: formData,
       });
 
-      const result = (await response.json()) as { success: boolean; message?: string };
+      const result = (await response.json()) as {
+        success: boolean;
+        message?: string;
+        reviewUrl?: string;
+      };
 
       if (!response.ok || !result.success) {
-        throw new Error(result.message ?? "Chưa thể gửi yêu cầu lúc này.");
+        throw new Error(result.message ?? "Chưa thể tạo yêu cầu lúc này.");
       }
 
       setSubmitStatus({
         type: "success",
         message: result.message ?? "Yêu cầu của bạn đã được ghi nhận.",
+        reviewUrl: result.reviewUrl ?? "/design",
       });
       setCustomerName("");
-      setContact("");
+      setEmail("");
+      setPhone("");
       setNote("");
       setImageUrl("");
       setImageFile(null);
@@ -144,21 +170,19 @@ export function FigureConfigurator() {
 
                 <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
                   <div className="max-w-2xl">
-                    <p className="text-sm tracking-[0.22em] text-[#ead3b4] uppercase">Khu vực chọn mẫu</p>
+                    <p className="text-sm tracking-[0.22em] text-[#ead3b4] uppercase">Builder</p>
                     <h1 className="mt-3 text-4xl font-semibold tracking-[-0.03em] text-white sm:text-5xl">
-                      Chọn trước phiên bản bạn muốn gửi tặng.
+                      Chọn cấu hình, lưu lại và gửi đơn ngay trong một luồng gọn.
                     </h1>
                     <p className="mt-4 max-w-2xl text-base leading-8 text-stone-300">
-                      Chọn dáng, phong cách và điểm nhấn chỉ trong vài bước. Sau đó gửi ảnh để chúng tôi tư vấn và
-                      hoàn thiện phiên bản mang dấu ấn riêng.
+                      Các lựa chọn của bạn được lưu lại ngay trên máy để không bị mất giữa chừng. Khi gửi thông tin,
+                      hệ thống sẽ tạo một trang review riêng để khách tiếp tục theo dõi và phản hồi.
                     </p>
                   </div>
 
                   <div className="glass-panel-soft rounded-[30px] px-5 py-4">
                     <p className="text-sm text-stone-200">Mức giá tham khảo</p>
-                    <p className="mt-2 text-3xl font-semibold text-[#f5ddbc]">
-                      {formatCurrency(activeSize.priceFrom)}
-                    </p>
+                    <p className="mt-2 text-3xl font-semibold text-[#f5ddbc]">{formatCurrency(activeSize.priceFrom)}</p>
                     <p className="mt-1 text-sm text-stone-300">Hoàn thiện trong {activeSize.productionTime}</p>
                   </div>
                 </div>
@@ -190,7 +214,7 @@ export function FigureConfigurator() {
                 />
 
                 <OptionCardGroup
-                  label="Chủ đề trang phục"
+                  label="Phong cách"
                   value={config.outfitTheme}
                   onChange={handleThemeChange}
                   options={outfitThemes.map((theme) => ({
@@ -209,7 +233,7 @@ export function FigureConfigurator() {
                 />
 
                 <MultiSelectGroup
-                  label="Phụ kiện đi kèm"
+                  label="Phụ kiện"
                   values={config.accessories}
                   onToggle={handleAccessoryToggle}
                   options={accessories.map((item) => ({
@@ -221,7 +245,7 @@ export function FigureConfigurator() {
                 />
 
                 <OptionCardGroup
-                  label="Kiểu đế"
+                  label="Đế trưng bày"
                   value={config.baseStyle}
                   onChange={(baseStyle) => setConfig((current) => ({ ...current, baseStyle }))}
                   options={baseStyles.map((base) => ({
@@ -236,7 +260,7 @@ export function FigureConfigurator() {
                   <div>
                     <h3 className="text-sm font-semibold tracking-[0.18em] text-[#ead3b4] uppercase">Ảnh chân dung</h3>
                     <p className="mt-3 text-sm leading-7 text-stone-300">
-                      Gửi ảnh rõ mặt để chúng tôi tư vấn diện mạo và cá nhân hoá phiên bản dành riêng cho bạn.
+                      Gửi ảnh rõ mặt để đội ngũ có thêm chất liệu cho phần tư vấn và tinh chỉnh sau đó.
                     </p>
                   </div>
 
@@ -263,9 +287,7 @@ export function FigureConfigurator() {
                         placeholder="https://..."
                         className={inputClassName}
                       />
-                      <p className="text-xs text-stone-500">
-                        Có thể dùng Google Drive, iCloud hoặc link ảnh trực tiếp.
-                      </p>
+                      <p className="text-xs text-stone-500">Có thể dùng Google Drive, iCloud hoặc link ảnh trực tiếp.</p>
                     </label>
                   </div>
                 </section>
@@ -274,11 +296,9 @@ export function FigureConfigurator() {
 
                 <section className="glass-panel-soft rounded-[32px] p-5 sm:p-6">
                   <div>
-                    <h3 className="text-sm font-semibold tracking-[0.18em] text-stone-400 uppercase">
-                      Gửi yêu cầu tư vấn
-                    </h3>
+                    <h3 className="text-sm font-semibold tracking-[0.18em] text-stone-400 uppercase">Tạo đơn hàng</h3>
                     <p className="mt-3 text-sm leading-7 text-stone-300">
-                      Để lại thông tin để chúng tôi liên hệ, xác nhận lựa chọn và gửi tư vấn phù hợp.
+                      Điền thông tin liên hệ để hệ thống tạo đơn và cấp link review riêng cho khách.
                     </p>
                   </div>
 
@@ -295,34 +315,44 @@ export function FigureConfigurator() {
                     </label>
 
                     <label className="space-y-2">
-                      <span className="text-sm text-stone-300">Số điện thoại hoặc email</span>
+                      <span className="text-sm text-stone-300">Email</span>
                       <input
                         required
-                        value={contact}
-                        onChange={(event) => setContact(event.target.value)}
-                        placeholder="090xxxxxxx hoặc hello@email.com"
+                        type="email"
+                        value={email}
+                        onChange={(event) => setEmail(event.target.value)}
+                        placeholder="hello@email.com"
+                        className={inputClassName}
+                      />
+                    </label>
+
+                    <label className="space-y-2 md:col-span-2">
+                      <span className="text-sm text-stone-300">Số điện thoại</span>
+                      <input
+                        required
+                        value={phone}
+                        onChange={(event) => setPhone(event.target.value)}
+                        placeholder="090xxxxxxx"
                         className={inputClassName}
                       />
                     </label>
                   </div>
 
                   <label className="mt-4 block space-y-2">
-                    <span className="text-sm text-stone-300">Điều bạn muốn thêm</span>
+                    <span className="text-sm text-stone-300">Ghi chú thêm</span>
                     <textarea
                       rows={5}
                       value={note}
                       onChange={(event) => setNote(event.target.value)}
-                      placeholder="Ví dụ: cần tặng sinh nhật, muốn in tên trên đế, làm theo phong cách bóng đá..."
+                      placeholder="Ví dụ: quà sinh nhật, muốn in tên trên đế, cần tone thanh lịch hơn..."
                       className={inputClassName}
                     />
                   </label>
 
                   <div className="mt-5 flex flex-col gap-4 border-t border-white/8 pt-5 md:flex-row md:items-center md:justify-between">
                     <div>
-                      <p className="text-sm text-stone-300">Hình xem trước giúp bạn dễ hình dung tổng thể.</p>
-                      <p className="text-xs text-stone-500">
-                        Phiên bản cuối sẽ được hoàn thiện theo lựa chọn và ảnh bạn gửi.
-                      </p>
+                      <p className="text-sm text-stone-300">Cấu hình được lưu tự động trong localStorage.</p>
+                      <p className="text-xs text-stone-500">Sau khi gửi, khách sẽ nhận được một link review riêng để xem model và phản hồi.</p>
                     </div>
 
                     <button
@@ -330,13 +360,19 @@ export function FigureConfigurator() {
                       disabled={submitStatus.type === "loading"}
                       className="premium-button rounded-full border border-[#f0d9b9]/30 bg-[#ebd7bd] px-6 py-3 text-sm font-semibold text-stone-950 disabled:cursor-not-allowed disabled:opacity-70"
                     >
-                      {submitStatus.type === "loading" ? "Đang gửi..." : "Gửi yêu cầu"}
+                      {submitStatus.type === "loading" ? "Đang tạo đơn..." : "Tạo đơn"}
                     </button>
                   </div>
 
                   {submitStatus.type === "success" ? (
                     <div className="mt-4 rounded-[22px] border border-emerald-400/20 bg-emerald-500/10 p-4 text-sm text-emerald-200">
-                      {submitStatus.message}
+                      <p>{submitStatus.message}</p>
+                      <Link
+                        href={submitStatus.reviewUrl}
+                        className="mt-3 inline-flex font-medium text-white underline underline-offset-4"
+                      >
+                        Mở trang review riêng
+                      </Link>
                     </div>
                   ) : null}
 
@@ -358,11 +394,11 @@ export function FigureConfigurator() {
 
           <Reveal delayMs={180}>
             <div className="glass-panel-soft rounded-[32px] p-5">
-              <p className="text-xs tracking-[0.18em] text-stone-500 uppercase">Điều bạn nhận được</p>
+              <p className="text-xs tracking-[0.18em] text-stone-500 uppercase">Flow mới</p>
               <ul className="mt-4 space-y-3 text-sm leading-7 text-stone-300">
-                <li>Hình xem trước thay đổi theo lựa chọn để bạn dễ hình dung món quà.</li>
-                <li>Mỗi chi tiết đều có thể phối lại theo phong cách bạn muốn.</li>
-                <li>Sau khi gửi yêu cầu, đội ngũ sẽ liên hệ để xác nhận và hoàn thiện phương án cuối.</li>
+                <li>Cấu hình được lưu tự động giữa các lần quay lại.</li>
+                <li>Khi tạo đơn, hệ thống sinh review token ngẫu nhiên và khó đoán.</li>
+                <li>Admin có thể cập nhật trạng thái, tải model GLB và ảnh preview lên cùng một nơi.</li>
               </ul>
             </div>
           </Reveal>

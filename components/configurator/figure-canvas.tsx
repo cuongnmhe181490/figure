@@ -8,6 +8,8 @@ import type { FigureConfig } from "@/types/figure";
 
 type FigureCanvasProps = {
   config: FigureConfig;
+  className?: string;
+  autoRotate?: boolean;
 };
 
 function FigureModel({ config }: FigureCanvasProps) {
@@ -115,13 +117,13 @@ function FigureModel({ config }: FigureCanvasProps) {
   );
 }
 
-export function FigureCanvas({ config }: FigureCanvasProps) {
+export function FigureCanvas({ config, className = "h-[580px] w-full", autoRotate = true }: FigureCanvasProps) {
   return (
     <Canvas
       shadows
       camera={{ position: [0, 1.1, 4.9], fov: 34 }}
       dpr={[1, 1.6]}
-      className="h-[580px] w-full"
+      className={className}
       style={{ touchAction: "none" }}
     >
       <color attach="background" args={["#121318"]} />
@@ -164,7 +166,7 @@ export function FigureCanvas({ config }: FigureCanvasProps) {
         maxDistance={8}
         maxPolarAngle={Math.PI / 2.03}
         minPolarAngle={Math.PI / 3.4}
-        autoRotate
+        autoRotate={autoRotate}
         autoRotateSpeed={0.75}
       />
     </Canvas>
