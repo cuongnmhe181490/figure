@@ -121,7 +121,7 @@ export function FigureCanvas({ config }: FigureCanvasProps) {
       shadows
       camera={{ position: [0, 1.1, 4.9], fov: 34 }}
       dpr={[1, 1.6]}
-      className="h-[520px] w-full"
+      className="h-[580px] w-full"
       style={{ touchAction: "none" }}
     >
       <color attach="background" args={["#121318"]} />
